@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk5hlll0paigq"]
+
+[ext_resource type="Texture2D" uid="uid://4dp8bfftdu4j" path="res://icon.svg" id="1_buw1i"]
+[ext_resource type="Script" path="res://src/scripts/player.gd" id="2_4ti5o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo61k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_buw1i")
+}],
+"loop": true,
+"name": &"debug",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_pwvx0"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyxw4"]
+radius = 64.0
+height = 128.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("2_4ti5o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yo61k")
+animation = &"debug"
+script = SubResource("GDScript_pwvx0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fyxw4")
