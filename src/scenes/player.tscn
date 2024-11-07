@@ -1,44 +1,120 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk5hlll0paigq"]
+[gd_scene load_steps=16 format=3 uid="uid://bk5hlll0paigq"]
 
-[ext_resource type="Texture2D" uid="uid://4dp8bfftdu4j" path="res://icon.svg" id="1_buw1i"]
+[ext_resource type="Texture2D" uid="uid://bbi7qnon6q1c1" path="res://assets/Player/Debug/player-debug.png" id="2_3e8c4"]
 [ext_resource type="Script" path="res://src/scripts/player.gd" id="2_4ti5o"]
+[ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_wmyfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3sbs"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jqhn"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idfwk"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53qfx"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58gce"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy2ve"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2a1y"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjtkt"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmeha"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp428"]
+atlas = ExtResource("2_3e8c4")
+region = Rect2(32, 32, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yo61k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_buw1i")
+"texture": SubResource("AtlasTexture_b3sbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jqhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idfwk")
 }],
 "loop": true,
-"name": &"debug",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53qfx")
+}],
+"loop": true,
+"name": &"in_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58gce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy2ve")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2a1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjtkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmeha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tp428")
+}],
+"loop": true,
+"name": &"run",
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_pwvx0"]
-script/source = "extends AnimatedSprite2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyxw4"]
-radius = 64.0
-height = 128.0
+radius = 7.0
+height = 110.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("2_4ti5o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 0)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yo61k")
-animation = &"debug"
-script = SubResource("GDScript_pwvx0")
+animation = &"jump"
+frame_progress = 0.534845
+script = ExtResource("3_wmyfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_fyxw4")
+
+[node name="Camera2D" type="Camera2D" parent="."]

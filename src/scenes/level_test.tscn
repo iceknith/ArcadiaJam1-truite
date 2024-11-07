@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://2mwu2nvltkml"]
+[gd_scene load_steps=5 format=3 uid="uid://2mwu2nvltkml"]
 
 [ext_resource type="PackedScene" uid="uid://bk5hlll0paigq" path="res://src/scenes/player.tscn" id="1_cjbbg"]
 [ext_resource type="Texture2D" uid="uid://qn1a77qgcwfe" path="res://colors/palette_nostalgique.png" id="2_lqye1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iiwf0"]
+size = Vector2(1967, 33)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox2vg"]
-size = Vector2(1969, 32)
+size = Vector2(45, 586)
 
 [node name="LevelTest" type="Node2D"]
+texture_filter = 1
 
 [node name="player" parent="." instance=ExtResource("1_cjbbg")]
+position = Vector2(178, 112)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -18,5 +23,16 @@ scale = Vector2(7.68359, 1)
 texture = ExtResource("2_lqye1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(983.5, 631)
+position = Vector2(982.5, 630.5)
+shape = SubResource("RectangleShape2D_iiwf0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(39.4999, 293.25)
+scale = Vector2(0.17578, 18.2969)
+texture = ExtResource("2_lqye1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(39.5, 293)
 shape = SubResource("RectangleShape2D_ox2vg")

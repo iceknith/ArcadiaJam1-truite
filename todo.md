@@ -2,11 +2,11 @@
 Trucs à faire:
 
 Code:
-- [ ] Système de platformer 2D
+- [x] Système de platformer 2D
 - [ ] Entités
 	- [ ] Ennemis (bougent à l'envers)
 	- [ ] PNJ (lancent interraction)
-- [ ] Système de combat
+- [ ] Système de combat (hp, dégats, et tout le tralala)
 - [ ] Système de dialogue modulable
 - [ ] Système de cutscenes
 - [ ] Arbre de décision des persos
