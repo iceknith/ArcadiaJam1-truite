@@ -3,24 +3,23 @@ extends CharacterBody2D
 
 #Exported constants
 #Movement
-@export var GROUND_SPEED:float = 400.0
-@export var AIR_SPEED:float = 450.0
-@export var GROUND_ACCELERATION:float = 25.0
-@export var AIR_ACCELERATION:float = 50.0
+@export var GROUND_SPEED:float = 100.0
+@export var AIR_SPEED:float = 115.0
+@export var GROUND_ACCELERATION:float = 6.0
+@export var AIR_ACCELERATION:float = 12.0
 @export var SPEED_CONVERT_RATIO:float = 0.45
-@export var EXTERNAL_VELOCITY_HARD_FRICTION:float = 50.0
-@export var EXTERNAL_VELOCITY_SOFT_FRICTION:float = 6.0
+@export var EXTERNAL_VELOCITY_SOFT_FRICTION:float = 5.0
 #Jump
-@export var JUMP_VELOCITY:float = -600.0
+@export var JUMP_VELOCITY:float = -150.0
 @export var COYOTE_TIME_DURATION:float = 0.3
 #Wall Slide
 @export var WALL_SLIDE_GRAVITY_REDUCE:float = 3.0
 #Wall Jump
-@export var WALL_JUMP_VELOCITY:float = -450.0
-@export var WALL_JUMP_REPULSE:float = 1000.0
+@export var WALL_JUMP_VELOCITY:float = -115.0
+@export var WALL_JUMP_REPULSE:float = 50.0
 @export var WALL_JUMP_COYOTE_TIME_DURATION:float = 0.15
 #Dash
-@export var DASH_VELOCITY:float = 750.0
+@export var DASH_VELOCITY:float = 200.0
 @export var DASH_TIME:float = 0.15
 
 #Movement variables
@@ -139,14 +138,12 @@ func movement_handler(delta:float):
 		velocity.x = lerp(velocity.x, direction*speed, acceleration*delta)
 	
 	#External velocity handler
-	if direction != signf(external_velocity.x):
+	velocity += external_velocity
+	
+	if direction == -signf(external_velocity.x):
 		external_velocity = lerp(external_velocity, Vector2.ZERO, EXTERNAL_VELOCITY_SOFT_FRICTION*delta)
-	elif direction == 0:
-		external_velocity = lerp(external_velocity, Vector2.ZERO, EXTERNAL_VELOCITY_HARD_FRICTION*delta)
 	else:
 		external_velocity = Vector2.ZERO
-	
-	velocity += external_velocity
 
 func dash_handler(delta:float):
 	if Input.is_action_just_pressed("dash") && dash_count > 0:
@@ -155,7 +152,6 @@ func dash_handler(delta:float):
 		get_tree().create_timer(DASH_TIME).connect("timeout", end_dash)
 		dash_direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 		if dash_direction.x != 0: dash_direction.y /= 1.2
-		else: dash_direction.y *= 1.5
 		pre_dash_x_velocity = abs(velocity.x)
 	
 	if is_dashing:
