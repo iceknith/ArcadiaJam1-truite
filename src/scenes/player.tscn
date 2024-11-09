@@ -209,6 +209,8 @@ radius = 4.0
 height = 24.0
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 6
+collision_mask = 2
 script = ExtResource("2_4ti5o")
 JUMP_VELOCITY = -200.0
 WALL_JUMP_VELOCITY = -150.0
@@ -226,7 +228,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_fyxw4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -238,6 +240,8 @@ editor_draw_drag_margin = true
 
 [node name="DamageArea" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(5, -3)
