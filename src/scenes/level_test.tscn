@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://2mwu2nvltkml"]
+[gd_scene load_steps=15 format=4 uid="uid://2mwu2nvltkml"]
 
 [ext_resource type="PackedScene" uid="uid://bk5hlll0paigq" path="res://src/scenes/player.tscn" id="1_cjbbg"]
 [ext_resource type="Texture2D" uid="uid://qn1a77qgcwfe" path="res://colors/palette_nostalgique.png" id="2_lqye1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/scripts/MovingPlatforms.gd" id="3_2wtne"]
 [ext_resource type="PackedScene" uid="uid://c1nvhr5xltas6" path="res://src/scenes/test_enemy.tscn" id="5_s7kod"]
 [ext_resource type="PackedScene" uid="uid://dpalpjqljum7j" path="res://src/scenes/pnj_test.tscn" id="6_u15lx"]
+[ext_resource type="Script" path="res://src/scripts/CutsceneLauncher.gd" id="7_vw347"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2cx0g"]
 
@@ -32,6 +33,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 126, 1, 0, 0, 0, 0, -1, 0)
 }
 point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kynde"]
+radius = 8.24621
 
 [node name="LevelTest" type="Node2D"]
 texture_filter = 1
@@ -111,3 +115,13 @@ rotation = 0.00787385
 
 [node name="PNJ_Test" parent="." instance=ExtResource("6_u15lx")]
 position = Vector2(-64, 96)
+
+[node name="CutsceneLauncher" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_vw347")
+cutscene_path = "res://assets/Cutscenes/file_example_OGG_1280_11_4mg.ogg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneLauncher"]
+position = Vector2(472, 47)
+shape = SubResource("CircleShape2D_kynde")

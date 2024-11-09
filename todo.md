@@ -5,12 +5,15 @@ Code:
 - [x] Système de platformer 2D
 - [~] Entités
 	- [x] Ennemis (bougent à l'envers)
-	- [ ] PNJ (lancent interraction)
+	- [x] PNJ (lancent interraction)
 - [x] Système de combat (hp, dégats, et tout le tralala)
-- [ ] Système de dialogue modulable
-- [ ] Système de cutscenes
-- [ ] Arbre de décision des persos
+- [x] Système de dialogue modulable
+- [x] Système de cutscenes
+- [x] Arbre de décision des persos
 - [ ] Faire un menu
+- [ ] Faire un système de niveau
+	- [ ] Faire des objets qui enlèvent les power-ups
+	- [ ] Faire des objets qui permettent de finir le jeu
 Scénario:
 - [ ] Définir les endroits des actes 1, 2, 3
 - [ ] Définir la storyline de ces actes
