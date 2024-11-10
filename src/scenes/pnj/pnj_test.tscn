@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpalpjqljum7j"]
+
+[ext_resource type="Script" path="res://src/scripts/PNJ.gd" id="1_e5x7w"]
+[ext_resource type="Texture2D" uid="uid://d3cjkk33gavp" path="res://assets/PNJ/debug/in game/test.png" id="2_03or6"]
+[ext_resource type="Resource" uid="uid://bi5sem1xlw1ko" path="res://assets/PNJ/debug/dialogue_test.tres" id="2_3qm7r"]
+[ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_o577f"]
+[ext_resource type="Texture2D" uid="uid://bikfj53ctiidu" path="res://assets/PNJ/notif.png" id="4_pj1cd"]
+[ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="6_8s50r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yruv"]
+radius = 55.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wm5lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_03or6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PNJ_Test" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_e5x7w")
+notif = true
+DEFAULT_DIALOGUE = ExtResource("2_3qm7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5yruv")
+
+[node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wm5lg")
+animation = &"idle"
+script = ExtResource("3_o577f")
+
+[node name="NotifSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -31)
+texture = ExtResource("4_pj1cd")
+
+[node name="InteractText" parent="." instance=ExtResource("6_8s50r")]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = -31.0
+offset_bottom = -27.0
+scale = Vector2(0.2, 0.2)

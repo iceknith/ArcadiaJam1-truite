@@ -1,0 +1,156 @@
+[gd_scene load_steps=6 format=3 uid="uid://dllan12cbcgcx"]
+
+[ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_2ldpx"]
+[ext_resource type="Texture2D" uid="uid://nsgc3d82vr7d" path="res://assets/GUI/menues/temp_bg.png" id="2_6wtkm"]
+[ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_571yy"]
+[ext_resource type="PackedScene" uid="uid://dlf7ljsye0k1m" path="res://src/scenes/menues/key_change_button.tscn" id="4_b21y0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hns6"]
+font = ExtResource("3_571yy")
+font_size = 60
+
+[node name="OptionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ldpx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_6wtkm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="Title" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Options"
+label_settings = SubResource("LabelSettings_0hns6")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton2" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "left"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "right"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton3" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "up"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton4" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "down"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton5" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "jump"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton2" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "dash"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "attack"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="KeyChangeButton3" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_b21y0")]
+layout_mode = 2
+key_name = "interact"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_bottom = 0
+
+[node name="Back to menu" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Back" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50

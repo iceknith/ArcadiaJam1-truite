@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxrqpgv5lhr6m"]
+
+[ext_resource type="Script" path="res://src/scripts/Menu.gd" id="1_5wc7e"]
+[ext_resource type="PackedScene" uid="uid://bt4s2dmebgbky" path="res://src/scenes/menues/main_menu.tscn" id="2_dce5j"]
+[ext_resource type="PackedScene" uid="uid://dllan12cbcgcx" path="res://src/scenes/menues/option_menu.tscn" id="3_wgaja"]
+[ext_resource type="PackedScene" uid="uid://6kk8qlrvpgvo" path="res://src/scenes/menues/pause_menu.tscn" id="4_5cl3j"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_5wc7e")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_dce5j")]
+
+[node name="OptionMenu" parent="." instance=ExtResource("3_wgaja")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_5cl3j")]
+visible = false

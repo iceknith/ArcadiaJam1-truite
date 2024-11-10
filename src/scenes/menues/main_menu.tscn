@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt4s2dmebgbky"]
+
+[ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_up7c6"]
+[ext_resource type="Texture2D" uid="uid://nsgc3d82vr7d" path="res://assets/GUI/menues/temp_bg.png" id="2_o7vbm"]
+[ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_83j8b"]
+[ext_resource type="Texture2D" uid="uid://qn1a77qgcwfe" path="res://colors/palette_nostalgique.png" id="4_f61ma"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pjkqe"]
+font = ExtResource("3_83j8b")
+font_size = 100
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_up7c6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_o7vbm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Title" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Titre du jeu"
+label_settings = SubResource("LabelSettings_pjkqe")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="MarginContainerPlay" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerPlay"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_colors/font_hover_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_colors/font_pressed_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_colors/font_focus_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_colors/font_color = Color(0.803922, 0.831373, 0.647059, 1)
+theme_override_font_sizes/font_size = 40
+text = "Jouer"
+
+[node name="MarginContainerOptions" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerOptions"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Options"
+
+[node name="MarginContainerQuit" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerQuit"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quitter"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_f61ma")

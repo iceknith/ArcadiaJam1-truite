@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://dr7a1glnpbhhr"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_xre0j"]
+
+[resource]
+script = ExtResource("1_xre0j")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-520, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Je devrai probablement déposer mon {{power_up}} pour éviter de causer un paradoxe temporel...",
+"offset": Vector2(-300, 0),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(340, 360),
+"speaker": ""
+}
+}
+variables = {
+"power_up": {
+"type": 4,
+"value": "dash"
+}
+}
+strays = Array[String]([])
+characters = ""

@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsa2eh800irrv"]
+
+[ext_resource type="Script" path="res://src/scripts/Main.gd" id="1_aw10a"]
+[ext_resource type="PackedScene" uid="uid://b3gq2lejcq20g" path="res://src/scenes/gui.tscn" id="2_be5u4"]
+[ext_resource type="PackedScene" uid="uid://bxrqpgv5lhr6m" path="res://src/scenes/menu.tscn" id="2_e2qmi"]
+[ext_resource type="PackedScene" uid="uid://2mwu2nvltkml" path="res://src/scenes/levels/level_test.tscn" id="2_pnj4o"]
+[ext_resource type="PackedScene" uid="uid://iic3j707im06" path="res://src/scenes/dialogue.tscn" id="3_o2n3s"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_aw10a")
+FIRST_LEVEL = ExtResource("2_pnj4o")
+
+[node name="GUI" parent="." instance=ExtResource("2_be5u4")]
+visible = false
+
+[node name="Dialogue" parent="." instance=ExtResource("3_o2n3s")]
+visible = false
+
+[node name="Menu" parent="." instance=ExtResource("2_e2qmi")]

@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bi5sem1xlw1ko"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_5n2i2"]
+
+[resource]
+script = ExtResource("1_5n2i2")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-645, -177),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "ceci est un dialogue de test nyehehehe",
+"offset": Vector2(-400, -180),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "UI"
+},
+1: {
+"condition": {},
+"link": &"1_3",
+"text": "NON"
+}
+},
+"size": Vector2(340, 300),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "uhuhu",
+"offset": Vector2(20, -260),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "ahahaha",
+"offset": Vector2(20, 60),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://iic3j707im06"]
+
+[ext_resource type="Script" path="res://src/scripts/dialogue.gd" id="1_4sh45"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="1_e2gkq"]
+[ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="2_1mutj"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="2_6ad8t"]
+[ext_resource type="Resource" uid="uid://bi5sem1xlw1ko" path="res://assets/PNJ/debug/dialogue_test.tres" id="3_8erk2"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="3_p7ih0"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="4_4uejt"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2arle"]
+script = ExtResource("2_6ad8t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_gwl1b"]
+script = ExtResource("3_p7ih0")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_we21v"]
+script = ExtResource("4_4uejt")
+
+[node name="Dialogue" type="CanvasLayer"]
+script = ExtResource("1_4sh45")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("2_1mutj")
+
+[node name="DialogueBox" type="Panel" parent="Control"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 42.0
+offset_right = 1111.0
+offset_bottom = 231.0
+script = ExtResource("1_e2gkq")
+data = ExtResource("3_8erk2")
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_2arle"), SubResource("RichTextEffect_gwl1b"), SubResource("RichTextEffect_we21v")])
+options_alignment = 1

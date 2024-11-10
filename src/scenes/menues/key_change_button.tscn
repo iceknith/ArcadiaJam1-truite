@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlf7ljsye0k1m"]
+
+[ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_fcnxs"]
+[ext_resource type="Script" path="res://src/scripts/menues/KeyChangeButton.gd" id="2_4p5tr"]
+
+[node name="KeyChangeButton" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_fcnxs")
+alignment = 1
+script = ExtResource("2_4p5tr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Test text"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "Key_name"

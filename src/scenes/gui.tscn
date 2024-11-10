@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3gq2lejcq20g"]
+
+[ext_resource type="Texture2D" uid="uid://boj8gvurqo2gd" path="res://assets/GUI/in_game/hearts.png" id="1_11u4c"]
+[ext_resource type="Script" path="res://src/scripts/GUI.gd" id="1_yc66c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6pd"]
+atlas = ExtResource("1_11u4c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o82bg"]
+atlas = ExtResource("1_11u4c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsdgb"]
+atlas = ExtResource("1_11u4c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4bhlq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu6pd")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o82bg")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsdgb")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_10pwc"]
+file = "res://assets/Cutscenes/file_example_OGG_1280_11_4mg.ogg"
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_yc66c")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Life" type="Control" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="0" type="AnimatedSprite2D" parent="Control/MarginContainer/Life"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4bhlq")
+animation = &"2"
+
+[node name="1" type="AnimatedSprite2D" parent="Control/MarginContainer/Life"]
+position = Vector2(34, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4bhlq")
+animation = &"2"
+
+[node name="2" type="AnimatedSprite2D" parent="Control/MarginContainer/Life"]
+position = Vector2(68, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4bhlq")
+animation = &"2"
+
+[node name="Cutscenes" type="VideoStreamPlayer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = SubResource("VideoStreamTheora_10pwc")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1nvhr5xltas6"]
+
+[ext_resource type="Script" path="res://src/scripts/Enemy.gd" id="1_3htef"]
+[ext_resource type="Texture2D" uid="uid://dqj4ah3ph4bot" path="res://assets/Enemies/debug/test.png" id="2_er55v"]
+[ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_lxxs5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vca6"]
+atlas = ExtResource("2_er55v")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ihx1"]
+atlas = ExtResource("2_er55v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eiew"]
+atlas = ExtResource("2_er55v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lokpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vca6")
+}],
+"loop": true,
+"name": &"die",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ihx1")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eiew")
+}],
+"loop": true,
+"name": &"run",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rikeo"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc7vv"]
+radius = 9.0
+
+[node name="TestEnemy" type="CharacterBody2D"]
+collision_layer = 5
+script = ExtResource("1_3htef")
+
+[node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lokpj")
+animation = &"run"
+script = ExtResource("3_lxxs5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rikeo")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pc7vv")
