@@ -61,7 +61,7 @@ func launch_first_level():
 	$GUI.show()
 	$Dialogue.show()
 
-func launch_dialogue(dialogue:DialogueData):
+func launch_dialogue(dialogue:DialogueData, dialogue_start:String = "START"):
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	
 func exit_dialogue():

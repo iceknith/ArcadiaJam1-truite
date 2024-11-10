@@ -14,6 +14,7 @@ signal launch_dialogue(dialogue:DialogueData)
 func _ready() -> void:
 	super._ready()
 	
+	add_to_group("PowerUpDeposit")
 	add_to_group("DialogueLauncher")
 	
 	interracted_with.connect(on_interacted_with, CONNECT_DEFERRED)

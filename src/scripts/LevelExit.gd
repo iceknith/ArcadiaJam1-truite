@@ -1,39 +1,40 @@
-class_name LevelExit extends Area2D
+class_name LevelExit extends InteractionArea2D
 
 signal load_level(level:PackedScene)
-signal launch_dialogue(dialogue:DialogueData)
-signal game_over()
 
 @export var player_warning:bool = true
-@export var PLAYER_WARN_DIALOGUE:DialogueData
 @export var NEXT_LEVEL:PackedScene
 @export var POWER_CONDITIONS:Array[String] = ["Wall Jump", "Double Jump", "3ème Dash", "2ème Dash", "Dash"]
 
+var sprite:ExtendedAnimatedSprite2D
+var is_open:bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super._ready()
+	
+	add_to_group("LevelExit")
 	add_to_group("LevelLauncher")
-	add_to_group("DialogueLauncher")
 	
-	body_entered.connect(on_body_entered)
+	sprite = get_node("ExtendedAnimatedSprite2D")
+	sprite.animation = "closed"
 	
-	#Change variables
-	var power_up_text = ""
-	for power_condtion in POWER_CONDITIONS:
-		power_up_text += "mon " + power_condtion + ", "
-	power_up_text = power_up_text.trim_suffix(", ")
-	PLAYER_WARN_DIALOGUE.variables["power_up"] = { "type": TYPE_STRING, "value": power_up_text}
+	interracted_with.connect(on_interacted_with)
+	
+	await get_tree().process_frame
+	for deposit in get_tree().get_nodes_in_group("PowerUpDeposit"):
+		deposit.interracted_with.connect(on_power_up_change)
 
 func on_body_entered(body:Node2D):
-	if body as Player:
-		if conditions_respected(body):
-			load_level.emit(NEXT_LEVEL)
-		else:
-			if player_warning:
-				player_warning = false
-				launch_dialogue.emit(PLAYER_WARN_DIALOGUE)
-			else:
-				#À modifier plus tard...
-				game_over.emit()
+	if is_open:
+		super.on_body_entered(body)
+
+func interact_text_set_text():
+	#Fonction à changer si on veux mettre d'autre texte de "interact with"
+	var action_event:InputEvent = InputMap.action_get_events("interact")[0]
+	interact_text_position.get_node("MarginContainer/Label").text = \
+		"Appuyez sur " + action_event.as_text().replace("(Physical)", "") +\
+		" pour passer au niveau précédant"
 
 func conditions_respected(player:Player):
 	
@@ -49,3 +50,12 @@ func conditions_respected(player:Player):
 		return false
 	
 	return true
+	
+func on_interacted_with(player:Player):
+	load_level.emit(NEXT_LEVEL)
+	
+func on_power_up_change(player:Player):
+	await get_tree().process_frame
+	is_open = conditions_respected(player)
+	if is_open:
+		sprite.animation = "opened"

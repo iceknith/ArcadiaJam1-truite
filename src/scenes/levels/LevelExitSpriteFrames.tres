@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://d14ipu3h86l7r"]
+
+[ext_resource type="Texture2D" uid="uid://uf0fcgutxm0r" path="res://assets/Levels/door_temp.png" id="1_871og"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fale2"]
+atlas = ExtResource("1_871og")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miohj"]
+atlas = ExtResource("1_871og")
+region = Rect2(16, 0, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fale2")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miohj")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}]

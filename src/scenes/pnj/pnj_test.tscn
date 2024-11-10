@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpalpjqljum7j"]
+[gd_scene load_steps=8 format=3 uid="uid://dpalpjqljum7j"]
 
 [ext_resource type="Script" path="res://src/scripts/PNJ.gd" id="1_e5x7w"]
 [ext_resource type="Texture2D" uid="uid://d3cjkk33gavp" path="res://assets/PNJ/debug/in game/test.png" id="2_03or6"]
-[ext_resource type="Resource" uid="uid://bi5sem1xlw1ko" path="res://assets/PNJ/debug/dialogue_test.tres" id="2_3qm7r"]
 [ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_o577f"]
 [ext_resource type="Texture2D" uid="uid://bikfj53ctiidu" path="res://assets/PNJ/notif.png" id="4_pj1cd"]
 [ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="6_8s50r"]
@@ -27,7 +26,6 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_e5x7w")
 notif = true
-DEFAULT_DIALOGUE = ExtResource("2_3qm7r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5yruv")

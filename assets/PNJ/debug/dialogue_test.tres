@@ -5,13 +5,19 @@
 [resource]
 script = ExtResource("1_5n2i2")
 starts = {
-"START": &"0_1"
+"START": &"0_1",
+"START2": &"0_2"
 }
 nodes = {
 "0_1": {
 "link": &"1_1",
 "offset": Vector2(-645, -177),
 "start_id": "START"
+},
+"0_2": {
+"link": &"1_4",
+"offset": Vector2(-640, 400),
+"start_id": "START2"
 },
 "1_1": {
 "dialogue": "ceci est un dialogue de test nyehehehe",
@@ -47,6 +53,19 @@ nodes = {
 "1_3": {
 "dialogue": "ahahaha",
 "offset": Vector2(20, 60),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_4": {
+"dialogue": "Tu m'as déjà parlé, non ?",
+"offset": Vector2(-360, 400),
 "options": {
 0: {
 "condition": {},

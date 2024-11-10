@@ -113,4 +113,4 @@ func on_animation_loop():
 
 func on_damage_area_body_entered(body:Node2D):
 	if body as Player:
-		body.damage(ATTACK_DAMAGE, Vector2((body.global_position - global_position).x, 0))
+		body.damage(ATTACK_DAMAGE, body.global_position - global_position)

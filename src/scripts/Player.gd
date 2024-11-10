@@ -30,8 +30,9 @@ signal health_change(health_percent:float)
 @export var ATTACK_DAMAGE:float = 5.0
 @export var ATTACK_DELAY_TIME:float = 0.15
 #Hit
-@export var KNOCKBACK_FORCE:float = 40.0
-@export var KNOCKBACK_TIME:float = 0.2
+@export var KNOCKBACK_FORCE:float = 550.0
+@export var KNOCKBACK_VELOCITY_FRICTION:float = 20.0
+@export var KNOCKBACK_TIME:float = 0.5
 @export var Y_KNOCKBACK_REDUCE:float = 10.0
 @export var INVINCIBILITY_TIME:float = 0.5
 #Ability vars
@@ -42,6 +43,7 @@ signal health_change(health_percent:float)
 #Movement variables
 var gravity:Vector2
 var external_velocity:Vector2
+var knock_back_velocity:Vector2 = Vector2.ZERO
 
 #jump vars
 var can_jump:bool = false
@@ -134,8 +136,8 @@ func damage(damage_amount:float, damage_direction:Vector2) -> void:
 	else:
 		is_invincible = true
 		is_knocked_back = true
-		external_velocity = damage_direction.normalized() * KNOCKBACK_FORCE
-		external_velocity.y /= Y_KNOCKBACK_REDUCE
+		knock_back_velocity = damage_direction.normalized() * KNOCKBACK_FORCE
+		knock_back_velocity.y /= Y_KNOCKBACK_REDUCE
 		
 		get_tree().create_timer(INVINCIBILITY_TIME).connect("timeout", end_invincibility)
 		get_tree().create_timer(KNOCKBACK_TIME).connect("timeout", end_knockback)
@@ -153,7 +155,6 @@ func jump_handler(delta:float) -> void:
 	if !can_jump && is_on_floor(): 
 		can_jump = true
 		has_double_jump = true
-		dash_count = max_dash_count
 	elif can_jump && !is_on_floor() && !coyote_timer_started:
 		get_tree().create_timer(COYOTE_TIME_DURATION).connect("timeout", stop_coyote_time)
 		
@@ -173,9 +174,7 @@ func jump_handler(delta:float) -> void:
 		is_dashing = false
 		
 		#Jump animation
-		$AnimatedSprite2D.play("jump")
-		$AnimatedSprite2D.anim_repeat = false
-		$AnimatedSprite2D.anim_can_be_interupted = false
+		$AnimatedSprite2D.queue("jump", 1, false, false)
 	
 	#Stop jump
 	if Input.is_action_just_released("jump") and velocity.y < -1:
@@ -203,10 +202,15 @@ func movement_handler(delta:float) -> void:
 			$AnimatedSprite2D.queue("idle", 0, true, true)
 	
 	#Flip Sprite
-	if direction != 0: $AnimatedSprite2D.flip_h = direction < 0 
+	if direction != 0: $AnimatedSprite2D.flip_h = direction > 0 
+	
+	if is_knocked_back:
+		velocity = knock_back_velocity
+		knock_back_velocity = lerp(knock_back_velocity, Vector2.ZERO, EXTERNAL_VELOCITY_FRICTION*delta)
+		return
 	
 	# Moving the player
-	if direction == - signf(velocity.x) && external_velocity == Vector2.ZERO:
+	if direction == - signf(velocity.x) && external_velocity == Vector2.ZERO && !is_invincible:
 		velocity.x = -SPEED_CONVERT_RATIO * velocity.x
 	elif !is_dashing:
 		velocity.x = lerp(velocity.x, direction*speed, acceleration*delta)
@@ -214,13 +218,14 @@ func movement_handler(delta:float) -> void:
 	#External velocity handler
 	velocity += external_velocity
 	
-	if !is_knocked_back:
-		if direction == -signf(external_velocity.x):
-			external_velocity = lerp(external_velocity, Vector2.ZERO, EXTERNAL_VELOCITY_FRICTION*delta)
-		else:
-			external_velocity = Vector2.ZERO
+	if direction == -signf(external_velocity.x):
+		external_velocity = lerp(external_velocity, Vector2.ZERO, EXTERNAL_VELOCITY_FRICTION*delta)
+	else:
+		external_velocity = Vector2.ZERO
 
 func dash_handler(delta:float) -> void:
+	if is_on_floor(): dash_count = max_dash_count
+	
 	if Input.is_action_just_pressed("dash") && dash_count > 0:
 		dash_count -= 1
 		is_dashing = true
