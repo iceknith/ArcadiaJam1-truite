@@ -178,7 +178,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("11_1wp7o")
 DEPOSIT_DIALOGUE = ExtResource("12_awx8l")
-POWER_UP_TO_DEPOSIT = "Double Jump"
+POWER_UP_TO_DEPOSIT = "Grosee Épée"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUpDeposit"]
 position = Vector2(312, -64.25)

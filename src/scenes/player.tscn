@@ -1,8 +1,12 @@
-[gd_scene load_steps=45 format=3 uid="uid://bk5hlll0paigq"]
+[gd_scene load_steps=49 format=3 uid="uid://bk5hlll0paigq"]
 
 [ext_resource type="Script" path="res://src/scripts/Player.gd" id="2_4ti5o"]
 [ext_resource type="Texture2D" uid="uid://c0j0s4lwconuu" path="res://assets/Player/Dew.png" id="2_o85mt"]
+[ext_resource type="AudioStream" uid="uid://dtw2h4ok7h130" path="res://assets/Player/Sounds/bs_slash.ogg" id="2_rei40"]
+[ext_resource type="AudioStream" uid="uid://bxarwkpm8s8qy" path="res://assets/Player/Sounds/slide.ogg" id="3_l7qkt"]
 [ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_wmyfy"]
+[ext_resource type="AudioStream" uid="uid://bja3u3d3qjxnh" path="res://assets/Player/Sounds/in_air.ogg" id="4_vo13q"]
+[ext_resource type="AudioStream" uid="uid://c544jqe022n18" path="res://assets/Player/Sounds/run.ogg" id="5_jvgm7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsvuh"]
 atlas = ExtResource("2_o85mt")
@@ -345,12 +349,30 @@ DASH_VELOCITY = 150.0
 KNOCKBACK_FORCE = 300.0
 INVINCIBILITY_TIME = 2.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rei40")
+
+[node name="slidePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l7qkt")
+volume_db = -10.0
+parameters/looping = true
+
+[node name="inAirPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vo13q")
+volume_db = -20.0
+parameters/looping = true
+
+[node name="walkPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jvgm7")
+volume_db = 15.0
+parameters/looping = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(8, -3)
 sprite_frames = SubResource("SpriteFrames_yo61k")
 animation = &"attack_bs"
-frame_progress = 0.234291
+frame_progress = 0.49043
 script = ExtResource("3_wmyfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

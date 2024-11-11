@@ -6,6 +6,7 @@ extends Enemy
 
 func _ready() -> void:
 	super._ready()
+	$idleSounds.play()
 	
 	$DetectionRange.body_entered.connect(on_body_entered)
 
@@ -13,9 +14,18 @@ func on_body_entered(body:Node2D):
 	if body as Player:
 		player = body
 		chase_player = true
+		$attackSounds.play()
 
 func damage(damage_amount:float, damage_direction:Vector2, damage_source:Node2D):
 	super.damage(damage_amount, damage_direction, damage_source)
+	
+	if health == 0:
+		$attackSounds.stop()
+		$idleSounds.stop()
+		$hurtSounds.stop()
+		$deathSounds.play()
+	else:
+		$hurtSounds.play()
 	
 	if damage_source as Player:
 		player = damage_source
@@ -24,6 +34,7 @@ func damage(damage_amount:float, damage_direction:Vector2, damage_source:Node2D)
 func chase(delta:float, target:Vector2)->void:
 	if target.distance_to(global_position) > CHASE_MAX_DISTANCE:
 		chase_player = false
+		$attackSounds.stop()
 		return
 	
 	animated_sprite.queue("attack", 1, true, true)

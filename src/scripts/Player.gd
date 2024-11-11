@@ -41,6 +41,13 @@ signal health_change(health_percent:float)
 @export var has_big_sword:bool = true
 @export var can_double_jump:bool = true
 @export var max_dash_count:int = 3
+#Sounds
+var SLASH_SOUND:AudioStream = load("res://assets/Player/Sounds/slash.ogg")
+var BS_SLASH_SOUND:AudioStream = load("res://assets/Player/Sounds/bs_slash.ogg")
+var DASH_SOUND:AudioStream = load("res://assets/Player/Sounds/dash.ogg")
+var DOUBLE_JUMP_SOUND:AudioStream = load("res://assets/Player/Sounds/double_jump.ogg")
+var WALL_JUMP_SOUND:AudioStream = load("res://assets/Player/Sounds/wall_jump.ogg")
+var HURT_SOUND:AudioStream = load("res://assets/Player/Sounds/hurt.ogg")
 
 #Movement variables
 var gravity:Vector2
@@ -106,13 +113,18 @@ func _process(delta: float) -> void:
 	if is_dead: return
 	
 	if Input.is_action_just_pressed("attack") && !is_knocked_back:
+		
 		is_invincible = false
 		is_attacking = true
 		get_tree().create_timer(ATTACK_DELAY_TIME).connect("timeout", start_attack)
 		
 		on_animation_looped()
-		if has_big_sword: $AnimatedSprite2D.play("attack_bs")
-		else: $AnimatedSprite2D.play("attack")
+		if has_big_sword: 
+			play_sound(BS_SLASH_SOUND)
+			$AnimatedSprite2D.play("attack_bs")
+		else: 
+			play_sound(SLASH_SOUND)
+			$AnimatedSprite2D.play("attack")
 		$AnimatedSprite2D.anim_unstopable = true
 
 func _physics_process(delta: float) -> void:
@@ -133,6 +145,8 @@ func _physics_process(delta: float) -> void:
 
 func damage(damage_amount:float, damage_direction:Vector2) -> void:
 	if is_invincible || is_dead: return
+	
+	play_sound(HURT_SOUND)
 	
 	health = max(0, health - damage_amount)
 	health_change.emit(health/MAX_HEALTH)
@@ -157,10 +171,15 @@ func damage(damage_amount:float, damage_direction:Vector2) -> void:
 		$AnimatedSprite2D.play("hurt")
 		$AnimatedSprite2D.anim_unstopable = true
 
+func play_sound(sound:AudioStream):
+	$AudioStreamPlayer.stream = sound
+	$AudioStreamPlayer.play()
+
 func wall_slide_handler() -> void:
 	gravity = get_gravity()
 	if is_on_wall() && !is_on_floor() && velocity.y > 0:
 		gravity /= WALL_SLIDE_GRAVITY_REDUCE
+		if !$slidePlayer.playing: $slidePlayer.playing = true
 		
 		if is_dead || is_invincible || is_knocked_back:
 			$AnimatedSprite2D.queue("wall_slide",2, true, true)
@@ -169,6 +188,7 @@ func wall_slide_handler() -> void:
 			$AnimatedSprite2D.play("wall_slide")
 			$AnimatedSprite2D.anim_can_be_interupted = true
 			$AnimatedSprite2D.anim_repeat = true
+	else: $slidePlayer.playing = false
 
 func jump_handler(delta:float) -> void:
 	#Coyote jump
@@ -195,6 +215,7 @@ func jump_handler(delta:float) -> void:
 		
 		#Jump animation
 		$AnimatedSprite2D.queue("jump", 1, false, false)
+		play_sound(DOUBLE_JUMP_SOUND)
 	
 	#Stop jump
 	if Input.is_action_just_released("jump") and velocity.y < -1:
@@ -210,9 +231,19 @@ func movement_handler(delta:float) -> void:
 	if is_on_floor(): 
 		acceleration = GROUND_ACCELERATION
 		speed = GROUND_SPEED
+		
+		$inAirPlayer.playing = false
+		if direction != 0: 
+			if!$walkPlayer.playing: $walkPlayer.play()
+		else: $walkPlayer.playing = false
 	else:
 		acceleration = AIR_ACCELERATION
 		speed = AIR_SPEED
+		
+		$walkPlayer.playing = false
+		if !is_on_wall():
+			if !$inAirPlayer.playing: $inAirPlayer.play()
+		else: $inAirPlayer.playing = false
 	
 	# Animation logic
 	if is_on_floor():
@@ -255,6 +286,8 @@ func dash_handler(delta:float) -> void:
 		pre_dash_x_velocity = abs(velocity.x)
 		get_tree().create_timer(DASH_TIME).connect("timeout", end_dash)
 		
+		play_sound(DASH_SOUND)
+		
 		if is_dead || is_invincible || is_knocked_back:
 			$AnimatedSprite2D.queue("dash",3, false, false)
 		else:
@@ -282,6 +315,8 @@ func wall_jump_handler(delta:float) -> void:
 		external_velocity +=  Vector2(WALL_JUMP_REPULSE * coyote_wall_normal.x, 0)
 		can_wall_jump = false
 		is_dashing = false
+		
+		play_sound(WALL_JUMP_SOUND)
 		
 		#Jump animation
 		$AnimatedSprite2D.queue("jump", 1, false, false)

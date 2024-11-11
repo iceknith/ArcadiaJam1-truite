@@ -1,8 +1,12 @@
-[gd_scene load_steps=33 format=3 uid="uid://c747wycvgm7fb"]
+[gd_scene load_steps=36 format=3 uid="uid://c747wycvgm7fb"]
 
 [ext_resource type="Script" path="res://src/scripts/enemies/smoke_dogo.gd" id="1_t5g1n"]
 [ext_resource type="Texture2D" uid="uid://dxf3q0n3lskeb" path="res://assets/Enemies/smoke-dogo/smoke-dogo.png" id="2_kt5gf"]
 [ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_5mm77"]
+[ext_resource type="AudioStream" uid="uid://dsejqre515hyj" path="res://assets/Enemies/smoke-dogo/sounds/idle.ogg" id="4_qdkid"]
+[ext_resource type="AudioStream" uid="uid://c8n1kv23hgc2g" path="res://assets/Enemies/smoke-dogo/sounds/attack.ogg" id="5_45wdv"]
+[ext_resource type="AudioStream" uid="uid://dbyeed64pyyut" path="res://assets/Enemies/smoke-dogo/sounds/die.ogg" id="6_2rlpv"]
+[ext_resource type="AudioStream" uid="uid://ceerlc7pk8xf2" path="res://assets/Enemies/smoke-dogo/sounds/hurt.ogg" id="7_bnok3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ao54"]
 atlas = ExtResource("2_kt5gf")
@@ -75,10 +79,6 @@ region = Rect2(0, 270, 64, 45)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjnqy"]
 atlas = ExtResource("2_kt5gf")
 region = Rect2(64, 270, 64, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hf2on"]
-atlas = ExtResource("2_kt5gf")
-region = Rect2(128, 270, 64, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tf6ry"]
 atlas = ExtResource("2_kt5gf")
@@ -163,11 +163,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g64ir")
 }, {
-"duration": 1.0,
+"duration": 70.0,
 "texture": SubResource("AtlasTexture_fjnqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hf2on")
 }],
 "loop": true,
 "name": &"die",
@@ -203,7 +200,6 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pbsak"]
-radius = 10.0
 height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et08w"]
@@ -223,8 +219,7 @@ CHASE_PLAYER = true
 
 [node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uwjla")
-animation = &"run"
-frame_progress = 0.874842
+animation = &"die"
 script = ExtResource("3_5mm77")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -254,3 +249,21 @@ shape = SubResource("RectangleShape2D_kemep")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-23, 0)
 target_position = Vector2(0, 31)
+
+[node name="idleSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qdkid")
+parameters/looping = true
+
+[node name="attackSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_45wdv")
+volume_db = 10.0
+parameters/looping = true
+
+[node name="deathSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2rlpv")
+volume_db = 10.0
+area_mask = 8193
+
+[node name="hurtSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_bnok3")
+area_mask = 8193
