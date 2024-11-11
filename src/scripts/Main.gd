@@ -3,6 +3,7 @@ extends Node
 @export var FIRST_LEVEL:PackedScene
 
 var level:Node2D
+var level_packed_scene:PackedScene
 
 func _ready() -> void:
 	#Setup visible children
@@ -26,12 +27,13 @@ func load_level(level_scene:PackedScene) -> void:
 		level.queue_free()
 		level = null
 	
+	level_packed_scene = level_scene
 	level = level_scene.instantiate()
 	add_child(level)
 	
 	for child in get_tree().get_nodes_in_group("Player"):
 		safe_connect(child.health_change, $GUI.change_life)
-		safe_connect(child.death, back_to_menu)
+		safe_connect(child.death, restart_level)
 	
 	for child in get_tree().get_nodes_in_group("DialogueLauncher"):
 		safe_connect(child.launch_dialogue, $Dialogue.launch_dialogue)
@@ -61,17 +63,20 @@ func launch_first_level():
 	$GUI.show()
 	$Dialogue.show()
 
+func restart_level():
+	load_level(level_packed_scene)
+
 func launch_dialogue(dialogue:DialogueData, dialogue_start:String = "START"):
-	level.process_mode = Node.PROCESS_MODE_DISABLED
+	if level: level.process_mode = Node.PROCESS_MODE_DISABLED
 	
 func exit_dialogue():
-	level.process_mode = Node.PROCESS_MODE_INHERIT
+	if level: level.process_mode = Node.PROCESS_MODE_INHERIT
 
 func launch_cutscene(cutscene:String):
-	level.process_mode = Node.PROCESS_MODE_DISABLED
+	if level: level.process_mode = Node.PROCESS_MODE_DISABLED
 
 func exit_cutscene():
-	level.process_mode = Node.PROCESS_MODE_INHERIT
+	if level: level.process_mode = Node.PROCESS_MODE_INHERIT
 
 func show_pause_menu():
 	level.process_mode = Node.PROCESS_MODE_DISABLED
@@ -84,7 +89,9 @@ func hide_pause_menu():
 
 func back_to_menu():
 	$GUI.hide()
+	$GUI.stop_cutscene()
 	$Dialogue.hide()
+	$Menu.show()
 	$Menu.show_menu("MainMenu")
 	level.queue_free()
 	level = null

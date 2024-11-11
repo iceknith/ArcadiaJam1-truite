@@ -27,7 +27,8 @@ signal health_change(health_percent:float)
 @export var DASH_TIME:float = 0.15
 #Attack
 @export var MAX_HEALTH:float = 6.0
-@export var ATTACK_DAMAGE:float = 5.0
+@export var ATTACK_DAMAGE:float = 2.5
+@export var BS_ATTACK_DAMAGE:float = 7.5
 @export var ATTACK_DELAY_TIME:float = 0.15
 #Hit
 @export var KNOCKBACK_FORCE:float = 550.0
@@ -37,6 +38,7 @@ signal health_change(health_percent:float)
 @export var INVINCIBILITY_TIME:float = 0.5
 #Ability vars
 @export var has_wall_jump:bool = true
+@export var has_big_sword:bool = true
 @export var can_double_jump:bool = true
 @export var max_dash_count:int = 3
 
@@ -78,10 +80,13 @@ func _ready() -> void:
 	
 	#Animation
 	$AnimatedSprite2D.play("idle")
+	$AnimatedSprite2D.anim_can_be_interupted = true
+	$AnimatedSprite2D.anim_repeat = true
+	$AnimatedSprite2D.anim_unstopable = false
 	$AnimatedSprite2D.animation_looped.connect(on_animation_looped)
 	
 	#Attack
-	$DamageArea.hide()
+	$DamageArea.scale = Vector2.ZERO
 	$DamageArea.body_entered.connect(on_damage_area_body_entered)
 	
 	#Set life
@@ -100,19 +105,24 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_dead: return
 	
-	if Input.is_action_just_pressed("attack"):
-		$AnimatedSprite2D.play("attack")
-		$AnimatedSprite2D.anim_unstopable = true
+	if Input.is_action_just_pressed("attack") && !is_knocked_back:
+		is_invincible = false
+		is_attacking = true
 		get_tree().create_timer(ATTACK_DELAY_TIME).connect("timeout", start_attack)
+		
+		on_animation_looped()
+		if has_big_sword: $AnimatedSprite2D.play("attack_bs")
+		else: $AnimatedSprite2D.play("attack")
+		$AnimatedSprite2D.anim_unstopable = true
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return
 	
 	wall_slide_handler()
 	# Add the gravity.
-	if not is_on_floor():
+	if  !is_on_floor():
 		velocity += gravity * delta
-		$AnimatedSprite2D.queue("in_air", 1, true, false)
+		if !is_on_wall(): $AnimatedSprite2D.queue("in_air", 1, true, false)
 
 	if has_wall_jump: wall_jump_handler(delta)
 	if max_dash_count > 0: dash_handler(delta)
@@ -130,6 +140,7 @@ func damage(damage_amount:float, damage_direction:Vector2) -> void:
 	if health == 0:
 		is_dead = true
 		
+		on_animation_looped()
 		$AnimatedSprite2D.play("die")
 		$AnimatedSprite2D.anim_unstopable = true
 		
@@ -142,13 +153,22 @@ func damage(damage_amount:float, damage_direction:Vector2) -> void:
 		get_tree().create_timer(INVINCIBILITY_TIME).connect("timeout", end_invincibility)
 		get_tree().create_timer(KNOCKBACK_TIME).connect("timeout", end_knockback)
 		
+		on_animation_looped()
 		$AnimatedSprite2D.play("hurt")
 		$AnimatedSprite2D.anim_unstopable = true
 
 func wall_slide_handler() -> void:
 	gravity = get_gravity()
-	if is_on_wall() && velocity.y > 0:
+	if is_on_wall() && !is_on_floor() && velocity.y > 0:
 		gravity /= WALL_SLIDE_GRAVITY_REDUCE
+		
+		if is_dead || is_invincible || is_knocked_back:
+			$AnimatedSprite2D.queue("wall_slide",2, true, true)
+		else:
+			on_animation_looped()
+			$AnimatedSprite2D.play("wall_slide")
+			$AnimatedSprite2D.anim_can_be_interupted = true
+			$AnimatedSprite2D.anim_repeat = true
 
 func jump_handler(delta:float) -> void:
 	#Coyote jump
@@ -202,7 +222,8 @@ func movement_handler(delta:float) -> void:
 			$AnimatedSprite2D.queue("idle", 0, true, true)
 	
 	#Flip Sprite
-	if direction != 0: $AnimatedSprite2D.flip_h = direction > 0 
+	if direction != 0 && !is_attacking && !is_dead:
+		scale.x = direction * scale.y
 	
 	if is_knocked_back:
 		velocity = knock_back_velocity
@@ -229,10 +250,19 @@ func dash_handler(delta:float) -> void:
 	if Input.is_action_just_pressed("dash") && dash_count > 0:
 		dash_count -= 1
 		is_dashing = true
-		get_tree().create_timer(DASH_TIME).connect("timeout", end_dash)
 		dash_direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 		if dash_direction.x != 0: dash_direction.y /= 1.2
 		pre_dash_x_velocity = abs(velocity.x)
+		get_tree().create_timer(DASH_TIME).connect("timeout", end_dash)
+		
+		if is_dead || is_invincible || is_knocked_back:
+			$AnimatedSprite2D.queue("dash",3, false, false)
+		else:
+			on_animation_looped()
+			$AnimatedSprite2D.play("dash")
+			$AnimatedSprite2D.frame = 0
+			$AnimatedSprite2D.anim_can_be_interupted = false
+			$AnimatedSprite2D.anim_repeat = false
 	
 	if is_dashing:
 		velocity = (pre_dash_x_velocity + DASH_VELOCITY) * dash_direction
@@ -254,9 +284,7 @@ func wall_jump_handler(delta:float) -> void:
 		is_dashing = false
 		
 		#Jump animation
-		$AnimatedSprite2D.play("jump")
-		$AnimatedSprite2D.anim_repeat = false
-		$AnimatedSprite2D.anim_can_be_interupted = false
+		$AnimatedSprite2D.queue("jump", 1, false, false)
 
 func stop_coyote_time() -> void:
 	can_jump = false
@@ -266,8 +294,7 @@ func stop_wall_jump_coyote_time() -> void:
 	can_wall_jump = false
 
 func start_attack() -> void:
-	is_attacking = true
-	$DamageArea.show()
+	if is_attacking: $DamageArea.scale = Vector2.ONE
 
 func end_dash() -> void:
 	if is_dashing:
@@ -275,6 +302,7 @@ func end_dash() -> void:
 
 func end_invincibility()->void:
 	is_invincible = false
+	on_animation_looped()
 	$AnimatedSprite2D.play("idle")
 	$AnimatedSprite2D.anim_unstopable = false
 	$AnimatedSprite2D.anim_can_be_interupted = true
@@ -282,19 +310,22 @@ func end_invincibility()->void:
 
 func end_knockback()->void:
 	is_knocked_back = false
+	on_animation_looped()
 	$AnimatedSprite2D.play("invincible")
 
 func on_animation_looped()->void:
-	if $AnimatedSprite2D.animation == "attack":
+	if $AnimatedSprite2D.animation in ["attack", "attack_bs"]:
 		is_attacking = false
 		$AnimatedSprite2D.play("idle")
 		$AnimatedSprite2D.anim_unstopable = false
 		$AnimatedSprite2D.anim_repeat = true
 		$AnimatedSprite2D.anim_can_be_interupted = true
-		$DamageArea.hide()
+		$DamageArea.scale = Vector2.ZERO
 	if $AnimatedSprite2D.animation == "die":
 		death.emit()
 
 func on_damage_area_body_entered(body:Node2D)->void:
 	if is_attacking && (body as Enemy):
-		body.damage(ATTACK_DAMAGE, body.global_position - global_position)
+		var dmg = ATTACK_DAMAGE
+		if has_big_sword: dmg = BS_ATTACK_DAMAGE
+		body.damage(dmg, body.global_position - global_position, self)

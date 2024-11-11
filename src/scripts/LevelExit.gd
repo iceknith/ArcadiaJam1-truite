@@ -7,7 +7,7 @@ signal load_level(level:PackedScene)
 @export var POWER_CONDITIONS:Array[String] = ["Wall Jump", "Double Jump", "3ème Dash", "2ème Dash", "Dash"]
 
 var sprite:ExtendedAnimatedSprite2D
-var is_open:bool = true
+var is_open:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

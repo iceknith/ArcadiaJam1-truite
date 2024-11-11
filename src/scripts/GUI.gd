@@ -19,6 +19,8 @@ func play_cutscene(file_name:String):
 	$Control/Cutscenes.show()
 	$Control/Cutscenes.play()
 	
+func stop_cutscene():
+	cutscene_end()
+
 func cutscene_end():
-	$Control/Cutscenes.stream.file = ""
 	$Control/Cutscenes.hide()

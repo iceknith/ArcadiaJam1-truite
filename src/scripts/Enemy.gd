@@ -35,9 +35,9 @@ var speed:float
 
 func _ready() -> void:
 	#define children
+	damage_area = get_node("Area2D")
 	for child in get_children():
 		if child as ExtendedAnimatedSprite2D: animated_sprite = child
-		elif child as Area2D: damage_area = child
 		elif child as Path2D: for child2 in child.get_children(): if child2 as PathFollow2D: path_follow = child2
 	
 	#check if every key childs are present
@@ -59,19 +59,26 @@ func _ready() -> void:
 func _physics_process(delta:float) -> void:
 	if !path_follow || !animated_sprite || is_dead: return
 	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
 	if is_invincible: knockback_handler(delta)
 	else:
 		if chase_player && CHASE_PLAYER: chase(delta, player.global_position)
-		else: patroll_movement(delta)
-	
-	animated_sprite.queue("run", 0, true, true)
+		else: 
+			patroll_movement(delta)
+			animated_sprite.queue("run", 0, true, true)
 	move_and_slide()
 
 func patroll_movement(delta:float):
 	path_prev_pos = path_follow.position
 	speed = lerpf(speed, SPEED * delta, ACCELERATION * delta)
+	
 	path_follow.progress += speed
 	velocity = (path_follow.position - path_prev_pos)/delta
+	
+	var direction = signf(velocity.x)
+	if direction != 0: scale.x = direction * scale.y
 
 func chase(delta:float, target:Vector2)->void:
 	# Chase logic, is overwritten in enemies definition
@@ -80,11 +87,7 @@ func chase(delta:float, target:Vector2)->void:
 func knockback_handler(delta:float)->void:
 	velocity = lerp(velocity, (path_follow.position - path_prev_pos)/delta, KNOCKBACK_DECELERATION * delta)
 
-func detect_player(delta:float) -> void:
-	# Player detection logic, is overwritten in enemies definition
-	pass
-
-func damage(damage_amount:float, damage_direction:Vector2):
+func damage(damage_amount:float, damage_direction:Vector2, damage_source:Node2D):
 	if is_invincible || is_dead: return
 	
 	health = max(0, health-damage_amount)
@@ -112,5 +115,5 @@ func on_animation_loop():
 		queue_free()
 
 func on_damage_area_body_entered(body:Node2D):
-	if body as Player:
+	if body as Player && !is_dead:
 		body.damage(ATTACK_DAMAGE, body.global_position - global_position)
