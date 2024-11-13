@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="9_y47js"]
 [ext_resource type="Script" path="res://src/scripts/LevelExit.gd" id="10_pvve8"]
 [ext_resource type="SpriteFrames" uid="uid://dv4lhq2o4tq68" path="res://src/scenes/levels/PowerDebosit.tres" id="10_y4kxf"]
-[ext_resource type="PackedScene" uid="uid://cg4yn8t7i8s6u" path="res://src/scenes/levels/level_test2.tscn" id="11_qeryk"]
+[ext_resource type="PackedScene" uid="uid://crnmc1f5ljvmy" path="res://src/scenes/levels/act_0.tscn" id="12_4s6da"]
 [ext_resource type="SpriteFrames" uid="uid://d14ipu3h86l7r" path="res://src/scenes/levels/LevelExitSpriteFrames.tres" id="12_jowb3"]
 [ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="13_6mkvl"]
 [ext_resource type="PackedScene" uid="uid://c7bbq8jn2u8jk" path="res://src/scenes/pnj/finn.tscn" id="15_a4ddf"]
@@ -354,11 +354,12 @@ animation = &"no_power"
 metadata/_edit_lock_ = true
 
 [node name="LevelExit" type="Area2D" parent="."]
+z_index = -1
 position = Vector2(-2376, 120)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("10_pvve8")
-NEXT_LEVEL = ExtResource("11_qeryk")
+NEXT_LEVEL = ExtResource("12_4s6da")
 POWER_CONDITIONS = Array[String](["Wall Jump", "Double Jump", "Dash"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://chs8vc1afyafy"]
+[gd_scene load_steps=39 format=4 uid="uid://chs8vc1afyafy"]
 
 [ext_resource type="PackedScene" uid="uid://bk5hlll0paigq" path="res://src/scenes/player.tscn" id="1_x4iwc"]
 [ext_resource type="TileSet" uid="uid://dd8mkxev63yfu" path="res://assets/Tilemap/tileset-arch1.tres" id="2_0fdru"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://src/scripts/LevelExit.gd" id="9_f2juh"]
 [ext_resource type="PackedScene" uid="uid://dd02nyep2wx6x" path="res://src/scenes/levels/act_1.tscn" id="10_nsi81"]
 [ext_resource type="SpriteFrames" uid="uid://d14ipu3h86l7r" path="res://src/scenes/levels/LevelExitSpriteFrames.tres" id="11_hw31w"]
-[ext_resource type="Texture2D" uid="uid://d3toj5lc5c7jr" path="res://assets/Tilemap/fond_actet_2.png" id="11_s3eer"]
 [ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="12_v4nb1"]
 [ext_resource type="PackedScene" uid="uid://c747wycvgm7fb" path="res://src/scenes/enemies/smoke_dogo.tscn" id="13_kbcy7"]
 [ext_resource type="SpriteFrames" uid="uid://dv4lhq2o4tq68" path="res://src/scenes/levels/PowerDebosit.tres" id="14_t4y6a"]
@@ -225,23 +224,12 @@ scroll_base_offset = Vector2(0, -100)
 scroll_base_scale = Vector2(0.5, 0.5)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
 motion_mirroring = Vector2(737, 0)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 texture = ExtResource("5_uyyy3")
-metadata/_edit_lock_ = true
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-scale = Vector2(0.75, 0.75)
-motion_mirroring = Vector2(911, 0)
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture_filter = 1
-texture = ExtResource("11_s3eer")
 metadata/_edit_lock_ = true
 
 [node name="DashDeposit" type="Area2D" parent="."]
@@ -269,6 +257,7 @@ sprite_frames = ExtResource("14_t4y6a")
 animation = &"no_power"
 
 [node name="LevelExit" type="Area2D" parent="."]
+z_index = -1
 position = Vector2(-2821, 119)
 collision_layer = 128
 collision_mask = 2

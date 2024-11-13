@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/scripts/levels/act_3.gd" id="1_ekknp"]
 [ext_resource type="PackedScene" uid="uid://bk5hlll0paigq" path="res://src/scenes/player.tscn" id="1_grvrc"]
 [ext_resource type="TileSet" uid="uid://dd8mkxev63yfu" path="res://assets/Tilemap/tileset-arch1.tres" id="2_bebt7"]
+[ext_resource type="Texture2D" uid="uid://dfdofo2gj3log" path="res://assets/Tilemap/fond1.png" id="3_ysfcq"]
 [ext_resource type="PackedScene" uid="uid://b0d1tasfdjjg0" path="res://src/scenes/enemies/boss.tscn" id="4_ca386"]
-[ext_resource type="Texture2D" uid="uid://d3toj5lc5c7jr" path="res://assets/Tilemap/fond_actet_2.png" id="4_j1wxo"]
 [ext_resource type="Texture2D" uid="uid://dapw5c8pugomw" path="res://assets/Levels/boss_door.png" id="5_er0ng"]
 [ext_resource type="Texture2D" uid="uid://bhwup2up6cviv" path="res://assets/Enemies/boss/boss_chimney.png" id="6_ce4o5"]
 [ext_resource type="Script" path="res://src/scripts/LevelExit.gd" id="7_f8mdw"]
@@ -99,13 +99,12 @@ scroll_base_offset = Vector2(0, -100)
 scroll_base_scale = Vector2(0.5, 0.5)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-scale = Vector2(0.75, 0.75)
-motion_mirroring = Vector2(912, 0)
+motion_mirroring = Vector2(737, 0)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
-texture = ExtResource("4_j1wxo")
+texture = ExtResource("3_ysfcq")
 metadata/_edit_lock_ = true
 
 [node name="Boss" parent="." instance=ExtResource("4_ca386")]
