@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt4s2dmebgbky"]
 
 [ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_up7c6"]
-[ext_resource type="Texture2D" uid="uid://nsgc3d82vr7d" path="res://assets/GUI/menues/temp_bg.png" id="2_o7vbm"]
+[ext_resource type="Texture2D" uid="uid://gjj5t3pebhc2" path="res://assets/GUI/menues/bg.png" id="2_l48dw"]
 [ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_83j8b"]
 [ext_resource type="Texture2D" uid="uid://qn1a77qgcwfe" path="res://colors/palette_nostalgique.png" id="4_f61ma"]
 
@@ -20,9 +20,12 @@ theme = ExtResource("1_up7c6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("2_o7vbm")
+offset_left = -3.0
+offset_top = -169.0
+offset_right = 3505.0
+offset_bottom = 2311.0
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_l48dw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

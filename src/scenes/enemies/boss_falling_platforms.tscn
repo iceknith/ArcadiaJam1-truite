@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvilegppfi1y2"]
+
+[ext_resource type="Script" path="res://src/scripts/enemies/boss_falling_platforms.gd" id="1_5mrj0"]
+[ext_resource type="Texture2D" uid="uid://dcbh4r6wrjq3n" path="res://assets/Enemies/boss/boss_falling_platform.png" id="2_nqf5w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c55qx"]
+size = Vector2(45, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elqf2"]
+size = Vector2(41, 2.75)
+
+[node name="BossFallingPlatforms" type="RigidBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_5mrj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -4.5)
+shape = SubResource("RectangleShape2D_c55qx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0.625)
+shape = SubResource("RectangleShape2D_elqf2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.499999, -0.999999)
+scale = Vector2(2.25, 0.7)
+
+[node name="BossFallingPlatform" type="Sprite2D" parent="."]
+texture = ExtResource("2_nqf5w")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

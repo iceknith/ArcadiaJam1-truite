@@ -7,7 +7,7 @@ signal launch_dialogue(dialogue:DialogueData)
 #Possible values:
 # Double Jump
 # Wall Jump
-# Grosee Épée
+# Energy Sword
 # 3ème Dash
 # 2ème Dash
 # Dash
@@ -35,7 +35,7 @@ func on_interacted_with(player:Player):
 		"Double Jump":
 			player.can_double_jump = false
 		"Wall Jump":
-			player.can_wall_jump = false
+			player.has_wall_jump = false
 		"3ème Dash":
 			player.max_dash_count = 2
 			player.dash_count = 2
@@ -45,7 +45,7 @@ func on_interacted_with(player:Player):
 		"Dash":
 			player.max_dash_count = 0
 			player.dash_count = 0
-		"Grosee Épée":
+		"Épée de lumière":
 			player.has_big_sword = false
 	
 	launch_dialogue.emit(DEPOSIT_DIALOGUE)

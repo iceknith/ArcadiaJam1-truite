@@ -252,18 +252,22 @@ target_position = Vector2(0, 31)
 
 [node name="idleSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_qdkid")
+max_distance = 300.0
 parameters/looping = true
 
 [node name="attackSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_45wdv")
 volume_db = 10.0
+max_distance = 300.0
 parameters/looping = true
 
 [node name="deathSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_2rlpv")
 volume_db = 10.0
+max_distance = 300.0
 area_mask = 8193
 
 [node name="hurtSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_bnok3")
+max_distance = 300.0
 area_mask = 8193

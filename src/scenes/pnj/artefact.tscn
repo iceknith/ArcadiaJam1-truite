@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://ovua5tv4ldi6"]
+
+[ext_resource type="Script" path="res://src/scripts/PNJ.gd" id="1_mjtbx"]
+[ext_resource type="Resource" uid="uid://t1f5qcrelf" path="res://assets/PNJ/artefact/artefact_end_choose.tres" id="2_am14r"]
+[ext_resource type="Texture2D" uid="uid://0ghio3ipend0" path="res://assets/Levels/artefact.png" id="2_tcanq"]
+[ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="3_ohdvn"]
+[ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="5_lc4kc"]
+[ext_resource type="Texture2D" uid="uid://bikfj53ctiidu" path="res://assets/PNJ/notif.png" id="6_5c6o6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81mg6"]
+radius = 70.3491
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d24bs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tcanq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Artefact" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+script = ExtResource("1_mjtbx")
+DIALOGUE = ExtResource("2_am14r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_81mg6")
+
+[node name="InteractText" parent="." instance=ExtResource("3_ohdvn")]
+offset_left = -35.0
+offset_top = -41.0
+offset_right = -35.0
+offset_bottom = -41.0
+scale = Vector2(0.25, 0.25)
+
+[node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d24bs")
+animation = &"idle"
+script = ExtResource("5_lc4kc")
+
+[node name="NotifSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -31)
+texture = ExtResource("6_5c6o6")

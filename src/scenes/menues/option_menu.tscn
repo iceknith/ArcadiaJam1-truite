@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dllan12cbcgcx"]
 
 [ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_2ldpx"]
-[ext_resource type="Texture2D" uid="uid://nsgc3d82vr7d" path="res://assets/GUI/menues/temp_bg.png" id="2_6wtkm"]
+[ext_resource type="Texture2D" uid="uid://gjj5t3pebhc2" path="res://assets/GUI/menues/bg.png" id="2_e0wtc"]
 [ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_571yy"]
 [ext_resource type="PackedScene" uid="uid://dlf7ljsye0k1m" path="res://src/scenes/menues/key_change_button.tscn" id="4_b21y0"]
 
@@ -18,11 +18,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2ldpx")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("2_6wtkm")
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -3.0
+offset_top = -169.0
+offset_right = 3505.0
+offset_bottom = 2311.0
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_e0wtc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.376471, 0.333333, 0.431373, 0.588235)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

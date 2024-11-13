@@ -2,11 +2,16 @@ extends Enemy
 
 @export var CHASE_VELOCITY:float = 100
 @export var CHASE_FRICTION:float = 5.0
+@export var VELOCITY_RANDOMNESS_RANGE:float = 15.0
 @export var CHASE_MAX_DISTANCE:float = 300.0
 
 func _ready() -> void:
 	super._ready()
 	$idleSounds.play()
+	
+	var rand_vel_add = randf_range(-VELOCITY_RANDOMNESS_RANGE, VELOCITY_RANDOMNESS_RANGE)
+	CHASE_VELOCITY += rand_vel_add
+	SPEED += rand_vel_add
 	
 	$DetectionRange.body_entered.connect(on_body_entered)
 

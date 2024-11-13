@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		if notif_time > 2*PI:
 			notif_time = 0
 	else:
-		if notif_sprite.visible: notif_sprite.hide()
+		if notif_sprite && notif_sprite.visible: notif_sprite.hide()
 	
 
 func on_interacted_with(player:Player):

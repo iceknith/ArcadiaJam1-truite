@@ -9,7 +9,7 @@ signal health_change(health_percent:float)
 #Movement
 @export var GROUND_SPEED:float = 100.0
 @export var AIR_SPEED:float = 115.0
-@export var GROUND_ACCELERATION:float = 6.0
+@export var GROUND_ACCELERATION:float = 15.0
 @export var AIR_ACCELERATION:float = 12.0
 @export var SPEED_CONVERT_RATIO:float = 0.45
 @export var EXTERNAL_VELOCITY_FRICTION:float = 5.0
@@ -96,6 +96,9 @@ func _ready() -> void:
 	$DamageArea.scale = Vector2.ZERO
 	$DamageArea.body_entered.connect(on_damage_area_body_entered)
 	
+	#Spike detect
+	$SpikeDetectArea.body_entered.connect(on_spike_detect_area_body_entered)
+	
 	#Set life
 	health_change.emit(1)
 	
@@ -104,10 +107,17 @@ func _ready() -> void:
 		if child as TileMapLayer:
 			var map_limits:Rect2 = child.get_used_rect()
 			var map_cellsize:Vector2 = child.tile_set.tile_size
-			$Camera2D.limit_left = map_limits.position.x * map_cellsize.x
-			$Camera2D.limit_right = map_limits.end.x * map_cellsize.x
-			$Camera2D.limit_top = map_limits.position.y * map_cellsize.y
-			$Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
+			if $Camera2D.limit_left == -10000000:
+				$Camera2D.limit_left = map_limits.position.x * map_cellsize.x
+				$Camera2D.limit_right = map_limits.end.x * map_cellsize.x
+				$Camera2D.limit_top = map_limits.position.y * map_cellsize.y
+				$Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
+
+			else:
+				$Camera2D.limit_left = min($Camera2D.limit_left, map_limits.position.x * map_cellsize.x)
+				$Camera2D.limit_right = max($Camera2D.limit_right, map_limits.end.x * map_cellsize.x)
+				$Camera2D.limit_top = min($Camera2D.limit_top, map_limits.position.y * map_cellsize.y)
+				$Camera2D.limit_bottom = max($Camera2D.limit_bottom, map_limits.end.y * map_cellsize.y)
 
 func _process(delta: float) -> void:
 	if is_dead: return
@@ -208,7 +218,8 @@ func jump_handler(delta:float) -> void:
 		$AnimatedSprite2D.queue("jump", 1, false, false)
 		
 	#Double jump
-	elif Input.is_action_just_pressed("jump") && can_double_jump && has_double_jump && velocity.y > WALL_JUMP_VELOCITY:
+	elif Input.is_action_just_pressed("jump") && can_double_jump && \
+	  has_double_jump && velocity.y > WALL_JUMP_VELOCITY && !is_on_wall():
 		velocity.y = JUMP_VELOCITY
 		has_double_jump = false
 		is_dashing = false
@@ -278,7 +289,7 @@ func movement_handler(delta:float) -> void:
 func dash_handler(delta:float) -> void:
 	if is_on_floor(): dash_count = max_dash_count
 	
-	if Input.is_action_just_pressed("dash") && dash_count > 0:
+	if Input.is_action_just_pressed("dash") && dash_count > 0 && !is_dashing:
 		dash_count -= 1
 		is_dashing = true
 		dash_direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
@@ -288,9 +299,7 @@ func dash_handler(delta:float) -> void:
 		
 		play_sound(DASH_SOUND)
 		
-		if is_dead || is_invincible || is_knocked_back:
-			$AnimatedSprite2D.queue("dash",3, false, false)
-		else:
+		if !is_dead && !is_invincible && !is_knocked_back:
 			on_animation_looped()
 			$AnimatedSprite2D.play("dash")
 			$AnimatedSprite2D.frame = 0
@@ -364,3 +373,9 @@ func on_damage_area_body_entered(body:Node2D)->void:
 		var dmg = ATTACK_DAMAGE
 		if has_big_sword: dmg = BS_ATTACK_DAMAGE
 		body.damage(dmg, body.global_position - global_position, self)
+
+func on_spike_detect_area_body_entered(body:Node2D)->void:
+	damage(1.0, global_position - body.global_position)
+	
+	if body.get_parent() && (body.get_parent() as BossFallingPlatform):
+		body.get_parent().queue_free.call_deferred()

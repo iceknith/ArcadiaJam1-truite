@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal back_to_menu()
+
 func _ready() -> void:
 	$Control/Cutscenes.finished.connect(cutscene_end)
 
@@ -20,7 +22,10 @@ func play_cutscene(file_name:String):
 	$Control/Cutscenes.play()
 	
 func stop_cutscene():
-	cutscene_end()
+	$Control/Cutscenes.hide()
 
 func cutscene_end():
 	$Control/Cutscenes.hide()
+	
+	if "ending" in $Control/Cutscenes.stream.file:
+		back_to_menu.emit()

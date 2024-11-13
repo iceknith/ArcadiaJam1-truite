@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	#GUI
 	$GUI/Control/Cutscenes.finished.connect(exit_cutscene)
+	$GUI.back_to_menu.connect(back_to_menu)
 	#Dialogue
 	$Dialogue/Control/DialogueBox.dialogue_ended.connect(exit_dialogue)
 	#Menu
@@ -34,6 +35,7 @@ func load_level(level_scene:PackedScene) -> void:
 	for child in get_tree().get_nodes_in_group("Player"):
 		safe_connect(child.health_change, $GUI.change_life)
 		safe_connect(child.death, restart_level)
+		child.health_change.emit(1)
 	
 	for child in get_tree().get_nodes_in_group("DialogueLauncher"):
 		safe_connect(child.launch_dialogue, $Dialogue.launch_dialogue)

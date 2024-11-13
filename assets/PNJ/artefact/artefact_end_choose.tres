@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://t1f5qcrelf"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_hcd3j"]
+
+[resource]
+script = ExtResource("1_hcd3j")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-560, 20),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Voulez vous utiliser ou détruire l'artéfact ?",
+"offset": Vector2(-260, 20),
+"options": {
+0: {
+"condition": {},
+"link": &"3_1",
+"text": "Utiliser l'artéfact"
+},
+1: {
+"condition": {},
+"link": &"3_2",
+"text": "Détruire l'artéfact"
+}
+},
+"size": Vector2(300, 256),
+"speaker": ""
+},
+"3_1": {
+"link": "END",
+"offset": Vector2(180, 160),
+"signalValue": "ending_use"
+},
+"3_2": {
+"link": "END",
+"offset": Vector2(178, 284),
+"signalValue": "ending_destroy"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

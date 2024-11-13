@@ -37,17 +37,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if !IS_ACTIVATED_BY_PLAYER || is_moving:
 		path_prev_pos = path_follow.position
-		if stop_moving:
-			if path_follow.progress_ratio < 0.5:
-				speed = lerpf(speed, -SPEED * delta, ACCELERATION * delta)
-			if abs(path_follow.progress_ratio) < STOP_TRESHOLD:
-				is_moving = false
-				stop_moving = false
+		if stop_moving && abs(path_follow.progress_ratio) < STOP_TRESHOLD:
+			is_moving = false
+			stop_moving = false
 		else:
 			speed = lerpf(speed, SPEED * delta, ACCELERATION * delta)
 		path_follow.progress += speed
-		
-		
 		
 		var velocity = path_follow.position - path_prev_pos
 		

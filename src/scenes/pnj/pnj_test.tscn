@@ -45,3 +45,4 @@ offset_top = -27.0
 offset_right = -31.0
 offset_bottom = -27.0
 scale = Vector2(0.2, 0.2)
+metadata/_edit_use_anchors_ = true

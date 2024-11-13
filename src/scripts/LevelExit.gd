@@ -4,7 +4,7 @@ signal load_level(level:PackedScene)
 
 @export var player_warning:bool = true
 @export var NEXT_LEVEL:PackedScene
-@export var POWER_CONDITIONS:Array[String] = ["Wall Jump", "Double Jump", "3ème Dash", "2ème Dash", "Dash"]
+@export var POWER_CONDITIONS:Array[String] = ["Épée de lumière", "Wall Jump", "Double Jump", "3ème Dash", "2ème Dash", "Dash"]
 
 var sprite:ExtendedAnimatedSprite2D
 var is_open:bool = false
@@ -24,6 +24,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	for deposit in get_tree().get_nodes_in_group("PowerUpDeposit"):
 		deposit.interracted_with.connect(on_power_up_change)
+		
+	on_power_up_change(get_tree().get_nodes_in_group("Player")[0])
 
 func on_body_entered(body:Node2D):
 	if is_open:
@@ -38,7 +40,7 @@ func interact_text_set_text():
 
 func conditions_respected(player:Player):
 	
-	if "Wall Jump" in POWER_CONDITIONS && player.can_wall_jump:
+	if "Wall Jump" in POWER_CONDITIONS && player.has_wall_jump:
 		return false
 	if "Double Jump" in POWER_CONDITIONS && player.can_double_jump:
 		return false
@@ -47,6 +49,8 @@ func conditions_respected(player:Player):
 	if "2ème Dash" in POWER_CONDITIONS && player.max_dash_count > 1:
 		return false
 	if "3ème Dash" in POWER_CONDITIONS && player.max_dash_count > 2:
+		return false
+	if "Épée de lumière" in POWER_CONDITIONS && player.has_big_sword:
 		return false
 	
 	return true

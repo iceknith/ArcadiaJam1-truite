@@ -40,7 +40,7 @@ func _ready() -> void:
 		if child as ExtendedAnimatedSprite2D: animated_sprite = child
 		elif child as Path2D: for child2 in child.get_children(): if child2 as PathFollow2D: path_follow = child2
 	
-	#check if every key childs are present
+	#check if every key childs are predamage_area = get_node("Area2D")sent
 	if !path_follow: push_error("Enemy nodes should have an PathFollow child")
 	if !animated_sprite: push_error("Enemy nodes should have an AnimatedSprite2D child")
 	if !damage_area: push_error("Enemy nodes should have an Area2D child")
@@ -78,7 +78,7 @@ func patroll_movement(delta:float):
 	velocity = (path_follow.position - path_prev_pos)/delta
 	
 	var direction = signf(velocity.x)
-	if direction != 0: scale.x = direction * scale.y
+	if direction != 0: scale.x = -direction * scale.y
 
 func chase(delta:float, target:Vector2)->void:
 	# Chase logic, is overwritten in enemies definition
@@ -97,6 +97,7 @@ func damage(damage_amount:float, damage_direction:Vector2, damage_source:Node2D)
 		is_dead = true
 		animated_sprite.play("die")
 		animated_sprite.anim_unstopable = true
+		animated_sprite.anim_repeat = true
 	else:
 		is_invincible = true
 		get_tree().create_timer(INVINCIBILITY_TIME).connect("timeout", stop_invincibility)
