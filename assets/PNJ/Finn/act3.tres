@@ -1,0 +1,186 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bewr7bxgverla"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_yfj7o"]
+
+[resource]
+script = ExtResource("1_yfj7o")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-325, -410),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Finn, ça va ?",
+"offset": Vector2(-100, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_10": {
+"dialogue": "Pas besoin d'imaginer...
+...",
+"offset": Vector2(2780, -480),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_11": {
+"dialogue": "Tu as sans doute raison",
+"offset": Vector2(3120, -120),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_12": {
+"dialogue": "Et c'est pour Sky que nous devons poursuivre.",
+"offset": Vector2(1280, -180),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "Comment est-ce que ça pourrait aller, Dew ? Sky ne pourra pas voir la fin de notre aventure.",
+"offset": Vector2(240, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_3": {
+"dialogue": "Je sais... J'aimerais aussi que nous soyons au complet.",
+"offset": Vector2(580, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_4": {
+"dialogue": "Ce n'est pas seulement une question d'être au complet ! Ce n'est pas l'absence d'une personne dans une chaîne. C'est l'absence de Sky.",
+"offset": Vector2(940, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": "Je sais..."
+},
+1: {
+"condition": {},
+"link": &"1_12",
+"text": "Pour Sky, nous devons poursuivre"
+}
+},
+"size": Vector2(320, 260),
+"speaker": 3
+},
+"1_5": {
+"dialogue": "Je sais... Je sais que nous n'aurons pas la fin que nous avions souhaité.",
+"offset": Vector2(1300, -580),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_6": {
+"dialogue": "En toute franchise, je n'arrive même plus à voir l'intérêt de poursuivre... Sans Sky, à quoi bon ?",
+"offset": Vector2(1620, -180),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_7": {
+"dialogue": "Imagine si c'était Blair, à la place. Tu aurais la moindre envie de continuer ?",
+"offset": Vector2(2400, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_10",
+"text": "Pas besoin d'imaginer"
+},
+1: {
+"condition": {},
+"link": &"1_9",
+"text": "Je le ferai quand même"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 3
+},
+"1_8": {
+"dialogue": "...",
+"offset": Vector2(1980, -200),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_9": {
+"dialogue": "C'est ce que Blair voudrait. Et Sky aussi.",
+"offset": Vector2(2780, -120),
+"options": {
+0: {
+"condition": {},
+"link": &"1_11",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

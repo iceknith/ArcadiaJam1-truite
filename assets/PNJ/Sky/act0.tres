@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://yl4okt4sew6i"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_20c0b"]
+
+[resource]
+script = ExtResource("1_20c0b")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-307, -386),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "J'ai eu tellement peur ! Heureusement que tu as utilisé l'artéfact. Sans ça, Blair...",
+"offset": Vector2(-80, -380),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 2
+},
+"1_2": {
+"dialogue": "C'était la seule solution, n'est-ce pas ?",
+"offset": Vector2(280, -373),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "Forcément. Il fallait un miracle et, à part cet artéfact, je crois que rien que nous ne connaissons ne pouvait en produire un.",
+"offset": Vector2(620, -360),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 2
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

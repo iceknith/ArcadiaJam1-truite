@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://c5g027intu4nd"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_1bqoh"]
+
+[resource]
+script = ExtResource("1_1bqoh")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-240, -420),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Je n'en reviens pas...! C'est un miracle. On aurait dû l'utiliser plus tôt, cet artéfact !",
+"offset": Vector2(-20, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_2": {
+"dialogue": "Je ne sais pas... Je ne pense pas que nous mesurions pleinement les conséquences de son utilisation.",
+"offset": Vector2(320, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "Dew ! Réjouis-toi, plutôt que d'anticiper un autre malheur. Tu as sauvé Blair ! Cela vaut toutes les conséquences du monde, non ?",
+"offset": Vector2(660, -420),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

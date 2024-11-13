@@ -47,4 +47,5 @@ func _process(delta: float) -> void:
 func on_interacted_with(player:Player):
 	launch_dialogue.emit(DIALOGUE, dialogue_start)
 	notif = false
-	dialogue_start = "START2"
+	get_node("CollisionShape2D").disabled = true
+	on_body_exited(player)

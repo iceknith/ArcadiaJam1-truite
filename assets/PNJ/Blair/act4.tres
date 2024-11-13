@@ -1,0 +1,229 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://uginprh4ef73"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_h46dp"]
+
+[resource]
+script = ExtResource("1_h46dp")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-740, -220),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Ça y est, on a occis la monstruosité qui terrorisait le pays depuis des générations !",
+"offset": Vector2(-480, -220),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_10": {
+"dialogue": "...",
+"offset": Vector2(1000, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_11": {
+"dialogue": "...",
+"offset": Vector2(2840, 320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_12": {
+"dialogue": "Mais ! Ça veut dire que...",
+"offset": Vector2(1920, -80),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_13": {
+"dialogue": "Il y a forcément une autre solution.",
+"offset": Vector2(1260, 600),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_14": {
+"dialogue": "C'est horrible, tu me fais peur. Comment tu peux en avoir la conviction ?",
+"offset": Vector2(240, -380),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_15": {
+"dialogue": "Je comprends, mais que faire ?",
+"offset": Vector2(500, 60),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "Certes... Mais tu n'as pas l'impression que le monde est... tout distordu ?
+Il me semble qu'en utilisant l'artéfact, on a infusé trop de magie dans notre monde, et que celui-ci ne peut plus tout contenir.
+Si ça continue, le monde tel qu'on le connaît n'en a plus pour très longtemps.",
+"offset": Vector2(-120, -220),
+"options": {
+0: {
+"condition": {},
+"link": &"1_14",
+"text": "C'est horrible, d'où le sais-tu ?"
+},
+1: {
+"condition": {},
+"link": &"1_15",
+"text": "Que faire ?"
+}
+},
+"size": Vector2(300, 290),
+"speaker": 1
+},
+"1_3": {
+"dialogue": "Regarde un peu autour de nous ! Des stries lumineuses s'ouvrent entre les murs, la gravité se comporte bizarrement !
+Tout ça, c'est forcément à cause de l'artéfact que tu utilises - que tu as sur-utilisé. On aurait jamais dû y toucher...",
+"offset": Vector2(600, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_10",
+"text": ""
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_4": {
+"dialogue": "Ce qu'il aurait fallut faire, tu veux dire. Ce qu'il aurait fallu faire, c'est ne jamais utiliser cet artéfact. Du tout.
+C'est une source de magie quasi-infinie, non ? Avec tous les miracles qu'il te permet d'invoquer, tu pourrais remonter le temps, et faire le bon choix.",
+"offset": Vector2(1340, -40),
+"options": {
+0: {
+"condition": {},
+"link": &"1_12",
+"text": "Mais ! Ça veut dire que..."
+},
+1: {
+"condition": {},
+"link": &"1_13",
+"text": "Il y a forcément une autre solution."
+}
+},
+"size": Vector2(300, 290),
+"speaker": 1
+},
+"1_5": {
+"dialogue": "C'est la dernière fois qu'on se voit !
+Adieu, Dew !",
+"offset": Vector2(3600, -140),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_6": {
+"dialogue": "Tu en vois une autre, toi ? Le monde s'écroule. Tu as ce puits d'énergie et catalyseur avec toi. Utilise-le une dernière fois pour faire les choses bien !",
+"offset": Vector2(1760, 320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": ""
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_7": {
+"dialogue": "Ressaisis-toi ! On ne peut pas parier la sauvegarde du monde pour une seule personne. Et puis, s'il s'effondre, de toute manière...",
+"offset": Vector2(2500, 320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_11",
+"text": ""
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_8": {
+"dialogue": "Si tu ne le fais pas, j'activerai l'artéfact moi-même.",
+"offset": Vector2(3220, 320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": "Dans ce cas..."
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_9": {
+"dialogue": "Blair, je ne veux pas. Tu sais très bien ce qu'il se passe si je ne l'utilise pas.",
+"offset": Vector2(2140, 320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt4s2dmebgbky"]
+[gd_scene load_steps=5 format=3 uid="uid://bt4s2dmebgbky"]
 
 [ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_up7c6"]
 [ext_resource type="Texture2D" uid="uid://gjj5t3pebhc2" path="res://assets/GUI/menues/bg.png" id="2_l48dw"]
-[ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_83j8b"]
 [ext_resource type="Texture2D" uid="uid://qn1a77qgcwfe" path="res://colors/palette_nostalgique.png" id="4_f61ma"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pjkqe"]
-font = ExtResource("3_83j8b")
-font_size = 100
+font_size = 95
+font_color = Color(0.803922, 0.831373, 0.647059, 1)
+shadow_size = 10
+shadow_color = Color(0.180392, 0.164706, 0.309804, 1)
+shadow_offset = Vector2(2, 2)
 
 [node name="MainMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +22,7 @@ grow_vertical = 2
 theme = ExtResource("1_up7c6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
 layout_mode = 0
 offset_left = -3.0
 offset_top = -169.0
@@ -39,11 +43,15 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Title" type="Label" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 275
+
+[node name="Title" type="Label" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Titre du jeu"
+text = "Sens Retour"
 label_settings = SubResource("LabelSettings_pjkqe")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
@@ -53,8 +61,7 @@ alignment = 2
 
 [node name="MarginContainerPlay" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 15
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerPlay"]
 custom_minimum_size = Vector2(200, 50)
@@ -66,27 +73,31 @@ theme_override_colors/font_hover_color = Color(0.803922, 0.831373, 0.647059, 1)
 theme_override_colors/font_pressed_color = Color(0.803922, 0.831373, 0.647059, 1)
 theme_override_colors/font_focus_color = Color(0.803922, 0.831373, 0.647059, 1)
 theme_override_colors/font_color = Color(0.803922, 0.831373, 0.647059, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "Jouer"
 
-[node name="MarginContainerOptions" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerOptions"]
+[node name="MarginContainerOptions" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer2/HBoxContainer/MarginContainerOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
 text = "Options"
 
-[node name="MarginContainerQuit" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="MarginContainerQuit" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 15
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainerQuit"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/HBoxContainer/MarginContainerQuit"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
 text = "Quitter"
 
 [node name="TextureRect2" type="TextureRect" parent="."]

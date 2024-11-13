@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsa2eh800irrv"]
+[gd_scene load_steps=7 format=3 uid="uid://bsa2eh800irrv"]
 
 [ext_resource type="Script" path="res://src/scripts/Main.gd" id="1_aw10a"]
 [ext_resource type="PackedScene" uid="uid://b3gq2lejcq20g" path="res://src/scenes/gui.tscn" id="2_be5u4"]
 [ext_resource type="PackedScene" uid="uid://bxrqpgv5lhr6m" path="res://src/scenes/menu.tscn" id="2_e2qmi"]
-[ext_resource type="PackedScene" uid="uid://crnmc1f5ljvmy" path="res://src/scenes/levels/act_0.tscn" id="2_of7eg"]
+[ext_resource type="PackedScene" uid="uid://be674kgatb60j" path="res://src/scenes/levels/act_4.tscn" id="2_mrk3c"]
 [ext_resource type="PackedScene" uid="uid://iic3j707im06" path="res://src/scenes/dialogue.tscn" id="3_o2n3s"]
+[ext_resource type="AudioStream" uid="uid://dk4m4mtvjfqyw" path="res://assets/musics/Projet.wav" id="6_vcrr3"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_aw10a")
-FIRST_LEVEL = ExtResource("2_of7eg")
+FIRST_LEVEL = ExtResource("2_mrk3c")
 
 [node name="GUI" parent="." instance=ExtResource("2_be5u4")]
 visible = false
@@ -17,3 +18,7 @@ visible = false
 visible = false
 
 [node name="Menu" parent="." instance=ExtResource("2_e2qmi")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vcrr3")
+autoplay = true

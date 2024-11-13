@@ -13,8 +13,8 @@ func show_menu(menu_name:String):
 
 func connect_signals():
 	#Main Menu
-	$MainMenu/MarginContainer/VBoxContainer2/MarginContainerQuit/Quit.pressed.connect(quit_game)
-	$MainMenu/MarginContainer/VBoxContainer2/MarginContainerOptions/Options.pressed.connect(load_options_from_menu)
+	$MainMenu/MarginContainer/VBoxContainer2/HBoxContainer/MarginContainerQuit/Quit.pressed.connect(quit_game)
+	$MainMenu/MarginContainer/VBoxContainer2/HBoxContainer/MarginContainerOptions/Options.pressed.connect(load_options_from_menu)
 	#Option Menu
 	$"OptionMenu/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer/Back to menu".pressed.connect(load_menu)
 	$OptionMenu/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer/Back.pressed.connect(load_pause)

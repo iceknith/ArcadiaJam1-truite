@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://dfcj3nimgu0r4"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_0dg5h"]
+
+[resource]
+script = ExtResource("1_0dg5h")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-299, -416),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "...",
+"offset": Vector2(-40, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_2": {
+"dialogue": "Finn ?",
+"offset": Vector2(320, -419),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "...
+...",
+"offset": Vector2(670, -413),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_4": {
+"dialogue": "Finn, écoute...",
+"offset": Vector2(1041.64, -415.909),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_5": {
+"dialogue": "Non, Dew. Pas maintenant...",
+"offset": Vector2(1426.18, -395.909),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

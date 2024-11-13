@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://hybpp6e1lces"]
+
+[ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="1_1pbje"]
+[ext_resource type="Script" path="res://src/scripts/tool_tip.gd" id="2_0ecle"]
+
+[node name="ToolTip" instance=ExtResource("1_1pbje")]
+z_index = -1
+script = ExtResource("2_0ecle")

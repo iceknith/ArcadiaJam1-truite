@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://cw4ynslfmpgrd"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_b76xh"]
+
+[resource]
+script = ExtResource("1_b76xh")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-660, -440),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Dew, tu voudrais bien faire entendre raison à cette tête de mule qu'est Sky ?",
+"offset": Vector2(-392, -425),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_2": {
+"dialogue": "Que se passe-t-il ?",
+"offset": Vector2(-20, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "Sa fichue cotte de maille : dis-lui de la mettre, toi ! Sky ne m'écoute pas. C'est trop ennuyeux, de se protéger du danger ?",
+"offset": Vector2(360, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": "Je vais lui parler"
+},
+1: {
+"condition": {},
+"link": &"1_5",
+"text": "Quelque chose de grave va se passer"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 3
+},
+"1_4": {
+"dialogue": "J'entends, j'entends. Je vais lui parler. Mais c'est Sky, je doute obtenir plus de résultats que toi...",
+"offset": Vector2(760, -640),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_5": {
+"dialogue": "Quelque chose de grave va se passer.",
+"offset": Vector2(760, -260),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_6": {
+"dialogue": "Evidemment, si mes conseils sont dits dans le vide !",
+"offset": Vector2(1120, -260),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 3
+},
+"1_7": {
+"dialogue": "... Il faudra veiller sur Sky.",
+"offset": Vector2(1480, -260),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

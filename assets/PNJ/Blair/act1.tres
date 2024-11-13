@@ -1,0 +1,211 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bofkaxb57e7kw"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_hby7c"]
+
+[resource]
+script = ExtResource("1_hby7c")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-380, -400),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Je tenais à te remercier. Pour tout à l'heure. Je te dois ma vie.",
+"offset": Vector2(-180, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_10": {
+"dialogue": "Ça me fait plaisir que tu sois là.",
+"offset": Vector2(3180, -300),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_11": {
+"dialogue": "De quoi tu parles ? Tu penses vraiment que le sort du monde entier repose sur tes épaules ? Et nous, alors ? Notre propre sort dépend avant tout de nous-mêmes. Et j'ai bien l'intention d'obtenir celui que je désire.",
+"offset": Vector2(2800, 80),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_12": {
+"dialogue": "...",
+"offset": Vector2(2360, -320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_13": {
+"dialogue": "Si c'est ce que tu veux, alors oui.",
+"offset": Vector2(2360, -620),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_14": {
+"dialogue": "Si ce n'est pas le cas... Si tu ne peux pas... Ce sera entièrement ma faute.",
+"offset": Vector2(2340, 40),
+"options": {
+0: {
+"condition": {},
+"link": &"1_11",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "...",
+"offset": Vector2(160, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "Et maintenant, ça y est. On y est, tous ensemble. La dernière étape de notre aventure.",
+"offset": Vector2(500, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_4": {
+"dialogue": "Ou peut-être la première.",
+"offset": Vector2(840, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_5": {
+"dialogue": "Tu anticipes déjà la suite ? C'est vrai qu'après... Ah ! Après. C'est drôle, je n'ai jamais osé pensé à après.",
+"offset": Vector2(1200, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_6": {
+"dialogue": "Et si tu y penses, maintenant ?",
+"offset": Vector2(1540, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_7": {
+"dialogue": "Je ne sais pas. Vivre au jour le jour, ça me semble bien. Sans me soucier de la suite. Avec vous. Ce doit être bien. On vivra comme ça, tu penses ?",
+"offset": Vector2(1900, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_13",
+"text": "Si c'est ce que tu veux, alors oui."
+},
+1: {
+"condition": {},
+"link": &"1_12",
+"text": "..."
+},
+2: {
+"condition": {},
+"link": &"1_14",
+"text": "Si ce n'est pas le cas... Ça sera de ma faute."
+}
+},
+"size": Vector2(300, 290),
+"speaker": 1
+},
+"1_8": {
+"dialogue": "Ça me fait plaisir que tu sois là",
+"offset": Vector2(2800, -600),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_9": {
+"dialogue": "... Dew ? Tout va bien ?",
+"offset": Vector2(2800, -300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_10",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

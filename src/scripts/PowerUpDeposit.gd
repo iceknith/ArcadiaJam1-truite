@@ -12,11 +12,16 @@ signal launch_dialogue(dialogue:DialogueData)
 # 2ème Dash
 # Dash
 
+var animated_sprite:AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 	
 	add_to_group("PowerUpDeposit")
 	add_to_group("DialogueLauncher")
+	
+	animated_sprite = get_node("AnimatedSprite2D")
+	animated_sprite.play("no_power")
 	
 	interracted_with.connect(on_interacted_with, CONNECT_DEFERRED)
 	
@@ -49,6 +54,6 @@ func on_interacted_with(player:Player):
 			player.has_big_sword = false
 	
 	launch_dialogue.emit(DEPOSIT_DIALOGUE)
+	animated_sprite.play("power")
 	
-	#Jouer une animation, puis disparaitre
-	queue_free()
+	get_node("CollisionShape2D").disabled = true

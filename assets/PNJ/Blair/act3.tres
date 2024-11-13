@@ -1,0 +1,186 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://240rra8p8u04"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_akgrm"]
+
+[resource]
+script = ExtResource("1_akgrm")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-980, -360),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "On touche au but, Dew !
+Vas-y, fonce et puisse la chance être avec toi !",
+"offset": Vector2(-740, -380),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": "Mais... J'ai déjà tué la monstruosité !?"
+},
+1: {
+"condition": {},
+"link": &"1_10",
+"text": "Je fais de mon mieux !"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_10": {
+"dialogue": "Je fais de mon mieux !",
+"offset": Vector2(-320, -120),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_11": {
+"dialogue": "Ensemble ?",
+"offset": Vector2(1200, -280),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_12": {
+"dialogue": "Et toi ?",
+"offset": Vector2(1180, 140),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "Comment ça ? Tu es tombé sur la tête ? C'est la peur qui te monte au cerveau, ou c'est une tentative de blague ?",
+"offset": Vector2(80, -480),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_3": {
+"dialogue": "... Ce devait être une blague, oui. J'ai seulement hâte que ce soit terminé.",
+"offset": Vector2(460, -480),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_4": {
+"dialogue": "Après tout ce temps, après tous ces efforts, tous ces sacrifices, on aura enfin réussi. On pourra enfin être libres et saufs. On pourra enfin vivre, Dew !",
+"offset": Vector2(848.9, -121),
+"options": {
+0: {
+"condition": {},
+"link": &"1_11",
+"text": "Ensemble ?"
+},
+1: {
+"condition": {},
+"link": &"1_12",
+"text": "Et toi ?"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_5": {
+"dialogue": "Et nous sommes tous avec toi. Je suis avec toi.",
+"offset": Vector2(80, -80),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_6": {
+"dialogue": "Merci, Blair. Infiniment.",
+"offset": Vector2(460, -40),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_7": {
+"dialogue": "Toujours.",
+"offset": Vector2(1540, -320),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_8": {
+"dialogue": "Comment ça, et moi ?",
+"offset": Vector2(1580, 160),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_9": {
+"dialogue": "Mais... J'ai déjà tué la monstruosité !?",
+"offset": Vector2(-320, -480),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

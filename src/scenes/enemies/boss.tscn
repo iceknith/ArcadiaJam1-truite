@@ -416,7 +416,7 @@ position = Vector2(-126.75, 143)
 shape = SubResource("RectangleShape2D_nb1l5")
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 
 [node name="GrabBeamPosition" type="Marker2D" parent="."]
 position = Vector2(-124, 108)

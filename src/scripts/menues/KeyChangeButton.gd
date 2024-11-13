@@ -17,6 +17,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		InputMap.action_erase_events(key_name)
 		InputMap.action_add_event(key_name, event)
 		button_unpress()
+		
+		for node in get_tree().get_nodes_in_group("input remap notified"):
+			node.on_input_remap()
 
 func set_disabled(value:bool):
 	$Button.disabled = value

@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://2ljfrvap8v0f"]
+
+[ext_resource type="Script" path="res://src/scripts/PNJ.gd" id="1_2inm0"]
+[ext_resource type="Texture2D" uid="uid://doropernhjjjc" path="res://assets/PNJ/Blair/Blair.png" id="2_u00mh"]
+[ext_resource type="Script" path="res://src/scripts/ExtendedAnimatedSprite2D.gd" id="3_21g3e"]
+[ext_resource type="Texture2D" uid="uid://bikfj53ctiidu" path="res://assets/PNJ/notif.png" id="4_k487o"]
+[ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="4_wt3p2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx6eg"]
+atlas = ExtResource("2_u00mh")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtjtc"]
+atlas = ExtResource("2_u00mh")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cnkv"]
+atlas = ExtResource("2_u00mh")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4omf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx6eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtjtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cnkv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[node name="Blair" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2inm0")
+notif = true
+
+[node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 0)
+sprite_frames = SubResource("SpriteFrames_4omf0")
+animation = &"idle"
+frame_progress = 0.0730095
+script = ExtResource("3_21g3e")
+
+[node name="NotifSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_k487o")
+
+[node name="InteractText" parent="." instance=ExtResource("4_wt3p2")]
+visible = false
+offset_left = -44.0
+offset_top = -34.0
+offset_right = -44.0
+offset_bottom = -34.0
+scale = Vector2(0.2, 0.2)
+metadata/_edit_use_anchors_ = true

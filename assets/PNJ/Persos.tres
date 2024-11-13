@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/CharacterList.gd" id="1"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/Character.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://clof1nxls6al1" path="res://assets/PNJ/Drew/Dew.png" id="2_hwns5"]
-[ext_resource type="Texture2D" uid="uid://b4uldtloccfi4" path="res://assets/PNJ/Proche/Proche.png" id="3_m3j60"]
-[ext_resource type="Texture2D" uid="uid://byqhsowqmkoi1" path="res://assets/PNJ/Perso1/Perso1.png" id="4_6ajqa"]
-[ext_resource type="Texture2D" uid="uid://cmgvc33bep5fm" path="res://assets/PNJ/perso2/Perso2.png" id="5_ytj4f"]
+[ext_resource type="Texture2D" uid="uid://clof1nxls6al1" path="res://assets/PNJ/Dew/Dew.png" id="2_hwns5"]
+[ext_resource type="Texture2D" uid="uid://b4uldtloccfi4" path="res://assets/PNJ/Blair/Proche.png" id="3_m3j60"]
+[ext_resource type="Texture2D" uid="uid://byqhsowqmkoi1" path="res://assets/PNJ/Sky/Perso1.png" id="4_6ajqa"]
+[ext_resource type="Texture2D" uid="uid://cmgvc33bep5fm" path="res://assets/PNJ/Finn/Perso2.png" id="5_ytj4f"]
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("2")
-name = "Drew"
+name = "Dew"
 image = ExtResource("2_hwns5")
 color = Color(0.294118, 0.447059, 0.431373, 1)
 
@@ -21,13 +21,13 @@ color = Color(0.490196, 0.443137, 0.552941, 1)
 
 [sub_resource type="Resource" id="Resource_cllhk"]
 script = ExtResource("2")
-name = "Finn"
+name = "Sky"
 image = ExtResource("4_6ajqa")
 color = Color(0.552941, 0.545098, 0.376471, 1)
 
 [sub_resource type="Resource" id="Resource_c50o6"]
 script = ExtResource("2")
-name = "Sky"
+name = "Finn"
 image = ExtResource("5_ytj4f")
 color = Color(0.87451, 0.831373, 0.686275, 1)
 

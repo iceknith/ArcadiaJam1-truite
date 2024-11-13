@@ -6,7 +6,7 @@ signal die()
 
 @export var falling_blocks:PackedScene = load("res://src/scenes/enemies/boss_falling_platforms.tscn")
 @export var falling_force = 15
-@export var attacks:Array[String] = ["grab_beam", "grab2beam", "punch1", "punch2"]
+@export var attacks:Array[String] = ["grab_beam", "grab2beam"]
 @export var attack_charge_time:Dictionary = {
 	"grab_beam":0.75,
 	"grab2beam": 0.75,
@@ -90,6 +90,7 @@ func damage(damage_amount:float, damage_direction:Vector2, damage_source:Node2D)
 	if !is_invulnerable:
 		super.damage(damage_amount, damage_direction, damage_source)
 		if health > 0: make_invulnerable()
+		else: die.emit()
 	else:
 		make_vulnerable()
 
@@ -107,11 +108,9 @@ func launch_attack():
 	match current_attack:
 		"grab_beam":
 			spawn_falling_block($GrabBeamPosition.global_position)
-			animated_sprite.queue("drop beam", 2, false, false)
 		"grab2beam":
 			spawn_falling_block($Grab2BeamPosition1.global_position)
 			spawn_falling_block($Grab2BeamPosition2.global_position)
-			animated_sprite.queue("drop beam", 2, false, false)
 		"punch1":
 			$Punch1Area2D/CollisionShape2D.disabled = false
 			get_tree().create_timer(attack_duration[current_attack]).connect("timeout", end_attack)

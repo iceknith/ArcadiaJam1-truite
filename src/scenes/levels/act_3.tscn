@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://c6s65xi3hvwn2"]
+[gd_scene load_steps=29 format=4 uid="uid://c6s65xi3hvwn2"]
 
+[ext_resource type="Script" path="res://src/scripts/levels/act_3.gd" id="1_ekknp"]
 [ext_resource type="PackedScene" uid="uid://bk5hlll0paigq" path="res://src/scenes/player.tscn" id="1_grvrc"]
 [ext_resource type="TileSet" uid="uid://dd8mkxev63yfu" path="res://assets/Tilemap/tileset-arch1.tres" id="2_bebt7"]
-[ext_resource type="Texture2D" uid="uid://dfdofo2gj3log" path="res://assets/Tilemap/fond1.png" id="3_ysfcq"]
 [ext_resource type="PackedScene" uid="uid://b0d1tasfdjjg0" path="res://src/scenes/enemies/boss.tscn" id="4_ca386"]
+[ext_resource type="Texture2D" uid="uid://d3toj5lc5c7jr" path="res://assets/Tilemap/fond_actet_2.png" id="4_j1wxo"]
 [ext_resource type="Texture2D" uid="uid://dapw5c8pugomw" path="res://assets/Levels/boss_door.png" id="5_er0ng"]
 [ext_resource type="Texture2D" uid="uid://bhwup2up6cviv" path="res://assets/Enemies/boss/boss_chimney.png" id="6_ce4o5"]
 [ext_resource type="Script" path="res://src/scripts/LevelExit.gd" id="7_f8mdw"]
@@ -13,6 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://cmhasp0exa0mq" path="res://src/scenes/interact_text.tscn" id="11_4li8d"]
 [ext_resource type="Script" path="res://src/scripts/PowerUpDeposit.gd" id="12_wru8p"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="13_4gelq"]
+[ext_resource type="AudioStream" uid="uid://xh1fcy8n5fen" path="res://assets/musics/test.wav" id="14_ihbi1"]
+[ext_resource type="SpriteFrames" uid="uid://dv4lhq2o4tq68" path="res://src/scenes/levels/PowerDebosit.tres" id="15_ayss4"]
+[ext_resource type="AudioStream" uid="uid://bcgbcxvr5gpf6" path="res://assets/musics/bruh.wav" id="15_yroyq"]
+[ext_resource type="PackedScene" uid="uid://2ljfrvap8v0f" path="res://src/scenes/pnj/blair.tscn" id="17_op4wj"]
+[ext_resource type="Resource" uid="uid://240rra8p8u04" path="res://assets/PNJ/Blair/act3.tres" id="18_21r2m"]
+[ext_resource type="PackedScene" uid="uid://c7bbq8jn2u8jk" path="res://src/scenes/pnj/finn.tscn" id="18_tgxtc"]
+[ext_resource type="Resource" uid="uid://bewr7bxgverla" path="res://assets/PNJ/Finn/act3.tres" id="20_ifjgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djf8e"]
 size = Vector2(48, 79)
@@ -20,7 +28,7 @@ size = Vector2(48, 79)
 [sub_resource type="Curve2D" id="Curve2D_gxkyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4ldk"]
-size = Vector2(134, 48)
+size = Vector2(120, 68)
 
 [sub_resource type="Resource" id="Resource_nquoq"]
 script = ExtResource("13_4gelq")
@@ -59,12 +67,19 @@ characters = ""
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ooaym"]
 size = Vector2(173, 0.75)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1nx8"]
+radius = 42.0119
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5nio"]
+size = Vector2(72, 44)
+
 [node name="Act3" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_ekknp")
 
 [node name="player" parent="." instance=ExtResource("1_grvrc")]
 z_index = 10
-position = Vector2(1591, 121)
+position = Vector2(1761, 126)
 BS_ATTACK_DAMAGE = 10.0
 max_dash_count = 2
 
@@ -84,12 +99,13 @@ scroll_base_offset = Vector2(0, -100)
 scroll_base_scale = Vector2(0.5, 0.5)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(737, 0)
+scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(912, 0)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
-texture = ExtResource("3_ysfcq")
+texture = ExtResource("4_j1wxo")
 metadata/_edit_lock_ = true
 
 [node name="Boss" parent="." instance=ExtResource("4_ca386")]
@@ -130,23 +146,21 @@ NEXT_LEVEL = ExtResource("8_qx7yd")
 POWER_CONDITIONS = Array[String](["Épée de lumière"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit"]
+position = Vector2(-1, -10)
 shape = SubResource("RectangleShape2D_m4ldk")
-metadata/_edit_lock_ = true
 
 [node name="ExtendedAnimatedSprite2D" type="AnimatedSprite2D" parent="LevelExit"]
-position = Vector2(0, 8.00002)
+position = Vector2(0, -8)
 sprite_frames = ExtResource("9_ghsxt")
-animation = &"opened"
+animation = &"closed"
 script = ExtResource("10_it85l")
-metadata/_edit_lock_ = true
 
 [node name="InteractText" parent="LevelExit" instance=ExtResource("11_4li8d")]
-offset_left = -36.0
-offset_top = -26.0
-offset_right = -36.0
-offset_bottom = -26.0
+offset_left = -52.0
+offset_top = -59.0
+offset_right = -52.0
+offset_bottom = -59.0
 scale = Vector2(0.25, 0.25)
-metadata/_edit_lock_ = true
 
 [node name="BSDeposit" type="Area2D" parent="."]
 position = Vector2(746, -48)
@@ -161,8 +175,41 @@ position = Vector2(-2.5, -0.375)
 shape = SubResource("RectangleShape2D_ooaym")
 
 [node name="InteractText" parent="BSDeposit" instance=ExtResource("11_4li8d")]
-offset_left = -41.0
-offset_top = -44.0
-offset_right = -41.0
-offset_bottom = -44.0
+offset_left = -51.0
+offset_top = -50.0
+offset_right = -51.0
+offset_bottom = -50.0
 scale = Vector2(0.25, 0.25)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BSDeposit"]
+position = Vector2(-1, -15)
+sprite_frames = ExtResource("15_ayss4")
+animation = &"no_power"
+
+[node name="AudioStreamPlayerBoss" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_ihbi1")
+autoplay = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_yroyq")
+volume_db = -80.0
+
+[node name="Blair" parent="." instance=ExtResource("17_op4wj")]
+position = Vector2(1562, 128)
+DIALOGUE = ExtResource("18_21r2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blair"]
+shape = SubResource("CircleShape2D_u1nx8")
+
+[node name="Finn" parent="." instance=ExtResource("18_tgxtc")]
+position = Vector2(1425, 56)
+DIALOGUE = ExtResource("20_ifjgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Finn"]
+position = Vector2(9, 2)
+shape = SubResource("RectangleShape2D_d5nio")
+metadata/_edit_lock_ = true
+
+[connection signal="die" from="Boss" to="." method="_on_boss_die"]

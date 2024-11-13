@@ -1,0 +1,142 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://c04fx1ge1jve"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_6liul"]
+
+[resource]
+script = ExtResource("1_6liul")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-720, -440),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Dew ! Oh, Dew, je ne sais même pas quoi dire. Sky...",
+"offset": Vector2(-360, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_8",
+"text": "Blair, que se passe-t-il ?"
+},
+1: {
+"condition": {},
+"link": &"1_9",
+"text": "Pas ça. Pas encore."
+}
+},
+"size": Vector2(300, 257),
+"speaker": 1
+},
+"1_2": {
+"dialogue": "Comment ça...?
+Dew, je n'ai rien pu faire. Personne n'a rien pu faire.",
+"offset": Vector2(360, -200),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_3": {
+"dialogue": "...",
+"offset": Vector2(760, -340),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_4": {
+"dialogue": "Ça s'est passé sans qu'on ne puisse faire quoi que ce soit. Je n'ai rien pu faire. Rien du tout.",
+"offset": Vector2(360, -500),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_5": {
+"dialogue": "Et tout ce que trouve à penser, c'est que ça aurait pu être moi... Si tu n'avais pas utilisé l'artéfact.",
+"offset": Vector2(1100, -340),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_6": {
+"dialogue": "...",
+"offset": Vector2(1440, -340),
+"options": {
+0: {
+"condition": {},
+"link": &"1_7",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_7": {
+"dialogue": "Mais ce n'est pas moi qui ai le plus besoin de toi, en ce moment. S'il-te-plaît, va voir Finn...",
+"offset": Vector2(1780, -340),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_8": {
+"dialogue": "Blair, que se passe-t-il ?",
+"offset": Vector2(0, -480),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_9": {
+"dialogue": "Pas ça. Pas encore.",
+"offset": Vector2(0, -140),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://assets/PNJ/Persos.tres"

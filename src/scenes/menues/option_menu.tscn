@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dllan12cbcgcx"]
+[gd_scene load_steps=5 format=3 uid="uid://dllan12cbcgcx"]
 
 [ext_resource type="Theme" uid="uid://bkx1fciydilhv" path="res://assets/GUI/theme.tres" id="1_2ldpx"]
 [ext_resource type="Texture2D" uid="uid://gjj5t3pebhc2" path="res://assets/GUI/menues/bg.png" id="2_e0wtc"]
-[ext_resource type="FontFile" uid="uid://bg034e6nmea1l" path="res://assets/GUI/EBGaramond-VariableFont_wght.ttf" id="3_571yy"]
 [ext_resource type="PackedScene" uid="uid://dlf7ljsye0k1m" path="res://src/scenes/menues/key_change_button.tscn" id="4_b21y0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hns6"]
-font = ExtResource("3_571yy")
 font_size = 60
+font_color = Color(0.803922, 0.831373, 0.647059, 1)
+shadow_color = Color(0.180392, 0.164706, 0.309804, 1)
 
 [node name="OptionMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +20,8 @@ grow_vertical = 2
 theme = ExtResource("1_2ldpx")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 0
 offset_left = -3.0
 offset_top = -169.0
 offset_right = 3505.0
@@ -160,7 +163,7 @@ text = "Back"
 
 [node name="Back" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
 layout_mode = 2
-text = "Back"
+text = "Retour"
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

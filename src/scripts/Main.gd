@@ -64,9 +64,14 @@ func launch_first_level():
 	$Menu.hide()
 	$GUI.show()
 	$Dialogue.show()
+	$AudioStreamPlayer.stop()
 
 func restart_level():
 	load_level(level_packed_scene)
+	$Menu.hide()
+	$GUI.show()
+	$Dialogue.show()
+	$AudioStreamPlayer.stop()
 
 func launch_dialogue(dialogue:DialogueData, dialogue_start:String = "START"):
 	if level: level.process_mode = Node.PROCESS_MODE_DISABLED
@@ -95,5 +100,6 @@ func back_to_menu():
 	$Dialogue.hide()
 	$Menu.show()
 	$Menu.show_menu("MainMenu")
+	$AudioStreamPlayer.play()
 	level.queue_free()
 	level = null

@@ -1,20 +1,20 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://d14ipu3h86l7r"]
 
-[ext_resource type="Texture2D" uid="uid://uf0fcgutxm0r" path="res://assets/Levels/door_temp.png" id="1_871og"]
+[ext_resource type="Texture2D" uid="uid://cbdu7o8heyxb" path="res://assets/Levels/DOOR.png" id="1_2ir7p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fale2"]
-atlas = ExtResource("1_871og")
-region = Rect2(0, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gp6s"]
+atlas = ExtResource("1_2ir7p")
+region = Rect2(0, 0, 68, 88)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_miohj"]
-atlas = ExtResource("1_871og")
-region = Rect2(16, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxj1r"]
+atlas = ExtResource("1_2ir7p")
+region = Rect2(68, 0, 68, 88)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fale2")
+"texture": SubResource("AtlasTexture_6gp6s")
 }],
 "loop": true,
 "name": &"closed",
@@ -22,7 +22,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_miohj")
+"texture": SubResource("AtlasTexture_mxj1r")
 }],
 "loop": true,
 "name": &"opened",

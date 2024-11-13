@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dv4lhq2o4tq68"]
+
+[ext_resource type="Texture2D" uid="uid://clng3oisbhmnk" path="res://assets/Levels/pedestal.png" id="1_ijprf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wtej"]
+atlas = ExtResource("1_ijprf")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q4to"]
+atlas = ExtResource("1_ijprf")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfqm6"]
+atlas = ExtResource("1_ijprf")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ex7"]
+atlas = ExtResource("1_ijprf")
+region = Rect2(144, 0, 48, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wtej")
+}],
+"loop": true,
+"name": &"no_power",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q4to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfqm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ex7")
+}],
+"loop": true,
+"name": &"power",
+"speed": 6.0
+}]
